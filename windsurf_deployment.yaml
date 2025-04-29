@@ -1,5 +1,5 @@
 # Windsurf Deploys Configuration (Beta)
-# This is an auto-generated file used to store your app deployment configuration. Do not modify.
+# This is an auto-generated file for seongkwang-middle-school (성광교회 중등부) used to store your app deployment configuration. Do not modify.
 # The ID of the project (different from project name) on the provider's system. This is populated as a way to update existing deployments.
 project_id: 73448a8f-1f3f-4fbd-b367-ca7f8304b483
 # The framework of the web application (examples: nextjs, react, vue, etc.)

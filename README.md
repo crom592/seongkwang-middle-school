@@ -1,4 +1,4 @@
-# 그리스도의 편지 | 성광교회 중등부 전도축제
+# 그리스도의 편지 | 성광교회 중등부 (Seongkwang Middle School Ministry)
 
 성광교회 중등부 전도축제를 위한 웹사이트입니다. 이 웹사이트는 중등부 활동을 소개하고 전도축제에 대한 정보를 제공합니다.
 
@@ -18,7 +18,7 @@
 ## 프로젝트 구조
 
 ```
-seongkwang-church-youth/
+seongkwang-middle-school/
 ├── index.html        # 메인 HTML 파일
 ├── styles.css        # CSS 스타일시트
 ├── script.js         # JavaScript 파일

@@ -77,6 +77,7 @@ function initPage() {
   handleScrollAnimations();
   initTestimonialSlider();
   initSmoothScroll();
+  initLetterSlider();
   
   // 개발 환경에서만 콘솔 로그 출력
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

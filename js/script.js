@@ -108,7 +108,6 @@ function initPage() {
   handleScrollAnimations();
   initTestimonialSlider();
   initSmoothScroll();
-  initLetterSlider();
   initKakaoMap();
   
   // 개발 환경에서만 콘솔 로그 출력

@@ -107,6 +107,202 @@ body {
 
 /* 모바일 최적화: 첫 번째 섹터(히어로) */
 @media (max-width: 430px) {
+  .info-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .info-item {
+    max-width: 100%;
+    padding: 15px 7px 12px 7px;
+  }
+  .ministry-info .section-title {
+    font-size: 1.08rem;
+    margin: 26px 0 10px 0;
+  }
+  .call-to-action {
+    font-size: 1.06rem;
+    padding: 16px 4px 13px 4px;
+    margin: 24px 0 0 0;
+  }
+}
+
+/* 성광중등부 소개/홍보 섹션 스타일 (모바일 앱 감성, 따뜻함 강조) */
+.ministry-info {
+  background: #fffaf6;
+  padding: 26px 0 18px 0;
+}
+.ministry-info .section-title {
+  color: #4b3c95;
+  text-align: left;
+  font-size: 1.18rem;
+  font-weight: 800;
+  margin: 32px 0 12px 18px;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ministry-info .section-title::before {
+  content: '💌';
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+.info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 12px;
+}
+.info-item {
+  background: #f7f4ff;
+  border-radius: 22px 22px 18px 18px;
+  padding: 18px 16px 12px 16px;
+  margin-bottom: 2px;
+  box-shadow: 0 2px 8px rgba(120,90,255,0.04);
+  text-align: left;
+  font-size: 1.05rem;
+  position: relative;
+}
+.info-item h3 {
+  color: #a07cf7;
+  font-size: 1.03rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.info-item img {
+  border-radius: 18px;
+  margin: 12px 0 0 0;
+  background: #f0e7ff;
+  width: 100%;
+  max-width: 180px;
+  box-shadow: 2px 4px 16px rgba(180,150,255,0.10);
+  transform: rotate(-2deg);
+}
+.testimony-group {
+  gap: 16px;
+  padding: 0 12px;
+}
+.testimony-group blockquote {
+  background: #fffbe4;
+  border-radius: 18px 26px 18px 18px;
+  padding: 16px 16px 12px 16px;
+  font-size: 1.02rem;
+  color: #6a4c00;
+  font-style: italic;
+  border-left: 5px solid #ffe07a;
+  box-shadow: 0 2px 8px rgba(255,200,50,0.07);
+  position: relative;
+}
+.testimony-group blockquote:before {
+  content: '“';
+  color: #ffe07a;
+  font-size: 2.2rem;
+  position: absolute;
+  left: 10px;
+  top: 2px;
+  opacity: 0.18;
+}
+.testimony-group blockquote span {
+  display: block;
+  margin-top: 8px;
+  color: #a07cf7;
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+.call-to-action {
+  background: linear-gradient(90deg, #ffe07a 60%, #a07cf7 100%);
+  color: #4b3c95;
+  border-radius: 22px;
+  padding: 18px 10px 14px 10px;
+  margin: 32px 12px 0 12px;
+  text-align: center;
+  font-size: 1.13rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  box-shadow: 0 2px 8px rgba(255,200,50,0.09);
+}
+
+  padding: 36px 0 30px 0;
+}
+.ministry-info .section-title {
+  color: #3C5595;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 36px 0 18px 0;
+  letter-spacing: -1px;
+}
+.info-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+.info-item {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(60,85,149,0.07);
+  padding: 18px 16px 14px 16px;
+  min-width: 0;
+  max-width: 320px;
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.info-item img {
+  border-radius: 12px;
+  margin: 13px 0 0 0;
+  box-shadow: 0 2px 10px rgba(60,85,149,0.08);
+  background: #e8eaf6;
+}
+.testimony-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 24px 0 36px 0;
+}
+.testimony-group blockquote {
+  background: #f0f4ff;
+  border-radius: 16px;
+  padding: 18px 18px 14px 18px;
+  font-size: 1.03rem;
+  color: #2c3e50;
+  position: relative;
+  font-style: italic;
+  box-shadow: 0 2px 10px rgba(60,85,149,0.07);
+}
+.testimony-group blockquote:before {
+  content: '“';
+  color: #3C5595;
+  font-size: 2.2rem;
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  opacity: 0.15;
+}
+.testimony-group blockquote span {
+  display: block;
+  margin-top: 8px;
+  color: #3C5595;
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+.call-to-action {
+  background: #3C5595;
+  color: #fff;
+  border-radius: 20px;
+  padding: 22px 10px 18px 10px;
+  margin: 36px 0 0 0;
+  text-align: center;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
   .main-hero-inner {
     max-width: 98vw;
     padding: 24px 8px 32px 8px;

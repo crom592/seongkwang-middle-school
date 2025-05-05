@@ -128,7 +128,7 @@ body {
 .main-hero-buttons {
   position: absolute;
   left: 50%;
-  top: 72%; /* 날짜 시간과 welcome 문구 사이에 위치하도록 미세 조정 */
+  top: 64%; /* 날짜 시간과 welcome 문구 사이에 위치하도록 미세 조정 */
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
@@ -144,8 +144,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px;
-  height: 45px;
+  width: 172px;
+  height: 34px;
   background: rgba(243, 157, 198, 0.9);
   border-radius: 1000px;
   color: #ffffff;

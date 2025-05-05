@@ -1,10 +1,10 @@
 /* 스티커 컨테이너 스타일 */
 .sticker-container {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   pointer-events: none;
   z-index: 900;
   overflow: hidden;

@@ -139,14 +139,14 @@ body {
   border-radius: 0 0 30px 30px;
 }
 .ministry-chapter:nth-of-type(1) {
-  background: #fffaf6;
+  background: #f7f4ff;
 }
 .ministry-chapter:nth-of-type(2) {
-  background: #f7f4ff;
+  background: #f0f4ff;
   margin-top: 20px;
 }
 .ministry-chapter:nth-of-type(3) {
-  background: #fff8e1;
+  background: #f7f4ff;
   margin-top: 20px;
 }
 .ministry-info .section-title {
@@ -160,6 +160,13 @@ body {
   padding-bottom: 12px;
   width: 100%;
   max-width: 300px;
+}
+.ministry-info .section-title::before {
+  content: '❤️';
+  font-size: 0.8em;
+  margin-right: 8px;
+  vertical-align: middle;
+  display: inline-block;
 }
 .ministry-info .section-title::after {
   content: '';
@@ -181,12 +188,12 @@ body {
   margin-bottom: 40px;
 }
 .info-item {
-  background: #f7f4ff;
+  background: #ffffff;
   border-radius: 22px 22px 18px 18px;
   padding: 18px 16px 12px 16px;
   margin-bottom: 2px;
-  box-shadow: 0 2px 8px rgba(120,90,255,0.04);
-  text-align: left;
+  box-shadow: 0 2px 8px rgba(120,90,255,0.08);
+  text-align: center;
   font-size: 1.05rem;
   position: relative;
 }
@@ -194,16 +201,17 @@ body {
   color: #a07cf7;
   font-size: 1.03rem;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 .info-item img {
   border-radius: 18px;
-  margin: 12px 0 0 0;
-  background: #f0e7ff;
+  margin: 12px auto 0 auto;
+  background: #f0f0f0;
   width: 100%;
   max-width: 180px;
   box-shadow: 2px 4px 16px rgba(180,150,255,0.10);
-  transform: rotate(-2deg);
+  display: block;
 }
 .testimony-group {
   gap: 16px;
@@ -251,6 +259,7 @@ body {
 
   padding: 36px 0 30px 0;
 }
+
 .ministry-info .section-title {
   color: #3C5595;
   text-align: center;

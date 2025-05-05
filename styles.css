@@ -33,7 +33,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--hero-bg-color);
+  background: #f8f8f8;
   position: relative;
   overflow: hidden;
   border: 2px solid #2196f3;
@@ -85,8 +85,19 @@ body {
 }
 
 .main-hero-btn {
-  display: block;
-  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 35px;
+  background: #f39dc6;
+  border-radius: 1000px;
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Montserrat-Medium', 'Noto Sans KR', sans-serif;
+  font-size: 18px;
+  line-height: 114%;
+  font-weight: 500;
   border: none;
   padding: 0;
   margin: 0;
@@ -95,12 +106,12 @@ body {
 }
 
 .main-hero-btn img {
-  width: 220px;
+  width: 100%;
   height: auto;
 }
 
 .main-hero-btn:hover {
-  transform: scale(1.02);
+  opacity: 0.9;
 }
 @media (max-width: 500px) {
   /* 기존 500px 이하 스타일 유지 */

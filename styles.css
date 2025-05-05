@@ -53,9 +53,10 @@ body {
   width: 100%;
   height: 100%;
   background-image: url('첫화면.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #f8f8f8;
   z-index: 1;
 }
 
@@ -170,7 +171,22 @@ body {
 
 /* 모바일 스타일: 500px 이하 */
 @media (max-width: 500px) {
-  /* 기존 500px 이하 스타일 유지 */
+  .main-hero-background {
+    background-size: contain;
+    background-position: center;
+  }
+  
+  .main-hero-buttons {
+    bottom: 40px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .main-hero-btn {
+    width: 160px;
+    height: 40px;
+    font-size: 14px;
+  }
 }
 
 /* 모바일 최적화: 첫 번째 섹터(히어로) */
@@ -504,6 +520,7 @@ body {
   }
 }
 
+/* 태블릿 및 데스크탑 스타일 */
 @media (min-width: 900px) {
   .main-hero {
     min-height: 100vh;

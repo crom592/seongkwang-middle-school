@@ -217,28 +217,28 @@ footer {
 }
 
 .primary-btn {
-  background: #ff7f50;
+  background: #3C5595;
   color: #fff;
-  border: 2px solid #ff7f50;
+  border: 2px solid #3C5595;
 }
 
 .primary-btn:hover, .primary-btn:focus {
-  background: #ff4f1f;
+  background: #2d4172; /* 어두운 톤의 네이비 */
   color: #fff;
-  border-color: #ff4f1f;
-  box-shadow: 0 4px 16px rgba(255,127,80,0.13);
+  border-color: #2d4172;
+  box-shadow: 0 4px 16px rgba(60,85,149,0.2);
 }
 
 .secondary-btn {
   background: #fff;
-  color: #ff7f50;
-  border: 2px solid #ff7f50;
+  color: #3C5595;
+  border: 2px solid #3C5595;
 }
 
 .secondary-btn:hover, .secondary-btn:focus {
-  background: #ff7f50;
+  background: #3C5595;
   color: #fff;
-  border-color: #ff7f50;
+  border-color: #3C5595;
 }
 
 .slider-prev, .slider-next {
@@ -507,7 +507,7 @@ section {
   margin-top: 10px;
 }
 .slider-prev, .slider-next {
-  background: var(--primary-color);
+  background: #3C5595;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -515,11 +515,12 @@ section {
   height: 40px;
   font-size: 1.4rem;
   cursor: pointer;
-  transition: background 0.2s;
-  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(60,85,149,0.15);
 }
 .slider-prev:hover, .slider-next:hover {
-  background: var(--secondary-color);
+  background: #2d4172;
+  box-shadow: 0 4px 12px rgba(60,85,149,0.25);
 }
 .slider-dots {
   display: flex;
@@ -530,11 +531,12 @@ section {
   height: 12px;
   border-radius: 50%;
   background: #ddd;
+  border: 1px solid #3C5595;
   transition: background 0.2s;
   cursor: pointer;
 }
 .slider-dot.active {
-  background: var(--primary-color);
+  background: #3C5595;
 }
 
 /* 위치 섹션 */

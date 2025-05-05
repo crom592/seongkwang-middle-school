@@ -6,12 +6,18 @@
   <title>너에게 온 편지 | 성광교회 중등부 전도축제</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="stickers.css">
+  <link rel="stylesheet" href="scroll-to-top.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- 맨 위로 올라가는 플로팅 버튼 -->
+  <div class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
   <!-- 드래그 가능한 스티커 컨테이너 -->
   <div class="sticker-container">
     <div class="sticker sticker-md sticker-border-white" style="transform: rotate(-8deg);">
@@ -270,6 +276,7 @@
 
   <script src="script.js"></script>
   <script src="stickers.js"></script>
+  <script src="scroll-to-top.js"></script>
 <!-- 2. 설치 스크립트: 지도 퍼가기 서비스가 2개 이상일 때, 이 스크립트는 한 번만 넣으면 됩니다. -->
 <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 <!-- 3. 실행 스크립트 -->

@@ -131,19 +131,61 @@ body {
   background: #fffaf6;
   padding: 26px 0 18px 0;
 }
+
+/* 각 챕터별 배경색 구분 */
+.ministry-chapter {
+  padding: 30px 0;
+  margin-bottom: 15px;
+  border-radius: 0 0 30px 30px;
+}
+.ministry-chapter:nth-of-type(1) {
+  background: #fffaf6;
+}
+.ministry-chapter:nth-of-type(2) {
+  background: #f7f4ff;
+  margin-top: 20px;
+}
+.ministry-chapter:nth-of-type(3) {
+  background: #fff8e1;
+  margin-top: 20px;
+}
 .ministry-info .section-title {
   color: #4b3c95;
-  text-align: left;
-  font-size: 1.18rem;
+  text-align: center;
+  font-size: 1.5rem;
   font-weight: 800;
-  margin: 32px 0 12px 18px;
+  margin: 50px 0 20px 0;
   letter-spacing: -1px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  position: relative;
+  padding-bottom: 12px;
 }
-.ministry-info .section-title::before {
+.ministry-info .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #a07cf7;
+  border-radius: 3px;
+}
+.ministry-info .section-title:nth-of-type(1)::before {
   content: '💌';
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+.ministry-info .section-title:nth-of-type(2)::before {
+  content: '🌱';
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+.ministry-info .section-title:nth-of-type(3)::before {
+  content: '🎉';
   font-size: 1.1em;
   margin-right: 4px;
 }
@@ -152,6 +194,7 @@ body {
   flex-direction: column;
   gap: 18px;
   padding: 0 12px;
+  margin-bottom: 40px;
 }
 .info-item {
   background: #f7f4ff;
@@ -337,7 +380,7 @@ body {
     margin-top: 10px;
   }
   .main-hero-btn {
-    width: 100%;
+    width: 214px;
     min-width: 0;
     font-size: 1.08rem;
     padding: 13px 0;

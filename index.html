@@ -4,13 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>너에게 온 편지 | 성광교회 중등부 전도축제</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="stickers.css">
-  <link rel="stylesheet" href="scroll-to-top.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/stickers.css">
+  <link rel="stylesheet" href="css/worship-section.css">
+  <link rel="stylesheet" href="css/scroll-to-top.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 모바일 우선 스타일 - 반응형 없이 모바일 레이아웃만 사용 */
+    .max-w-md { max-width: 28rem; }
+  </style>
 </head>
 <body>
   <!-- 맨 위로 올라가는 플로팅 버튼 -->
@@ -25,7 +31,7 @@
       <!-- 버튼만 남기고 나머지 제거 -->
       <div class="main-hero-buttons">
         <a href="#letter-slider" class="main-hero-btn">편지 읽어보기</a>
-        <a href="#video" class="main-hero-btn">축제 둘러보기</a>
+        <a href="#ministry-info" class="main-hero-btn">잔치 둘러보기</a>
       </div>
       
       <!-- 스티커 컨테이너 -->
@@ -58,24 +64,76 @@
   <section class="ministry-info" id="ministry-info">
     <!-- 우리의 예배 챕터 -->
     <div class="ministry-chapter">
-      <h2 class="section-title">우리의 예배</h2>
-      <div class="info-group">
-        <div class="info-item">
-          <h3>하나.</h3>
-          <p>영성, 지성, 인성, 훈훈함, 유머감각까지 겸비한 강도사님의 통찰력있는 말씀</p>
-          <img src="" alt="강도사님 사진" style="width:100%;max-width:220px;height:auto;background:#eee;"/>
-        </div>
-        <div class="info-item">
-          <h3>둘.</h3>
-          <p>우리의 목소리, 우리의 몸짓, 우리의 달란트로 하나님께 직접 올려드리는 찬양</p>
-          <img src="" alt="찬양팀 사진" style="width:100%;max-width:220px;height:auto;background:#eee;"/>
-        </div>
-        <div class="info-item">
-          <h3>셋.</h3>
-          <p>주중에도 자꾸만 우리 생각난다는 사랑둥이 선생님들과의 반모임</p>
-          <img src="" alt="교사 사진" style="width:100%;max-width:220px;height:auto;background:#eee;"/>
+      <!-- 상단 크라운 영역 -->
+      <div class="bg-pink-300 w-full h-20 rounded-b-[50px] mb-6"></div>
+      
+      <!-- 제목 -->
+      <h2 class="text-center text-2xl font-bold my-6">
+        🥳 우리의 예배 🥳
+      </h2>
+      
+      <!-- 하나 -->
+      <div class="flex flex-col items-center px-4 mb-6">
+        <div class="flex flex-row w-full max-w-md rounded-xl overflow-hidden shadow-lg">
+          <div class="bg-yellow-400 p-4 w-1/2 flex flex-col justify-between">
+            <div>
+              <div class="font-semibold mb-2">하나.</div>
+              <div class="text-sm leading-relaxed">
+                영성, 지성, 인성, 훈훈함, 유머감각까지 겸비한<br />
+                강도사님의 통찰력있는 말씀
+              </div>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="inline-block bg-white px-3 py-1 text-sm font-bold text-black rounded-full shadow">
+                → 영상 퀴즈! 보러가기
+              </a>
+            </div>
+          </div>
+          <div class="w-1/2 bg-gray-100">
+            <img src="images/worship/중등부 교사.jpeg" alt="강도사님" class="w-full h-full object-cover"/>
+          </div>
         </div>
       </div>
+      
+      <!-- 둘 -->
+      <div class="flex flex-col items-center px-4 mb-6">
+        <div class="flex flex-row w-full max-w-md rounded-xl overflow-hidden shadow-lg">
+          <div class="w-1/2 bg-gray-100">
+            <img src="images/worship/mask-group0.svg" alt="찬양 모습" class="w-full h-full object-cover"/>
+          </div>
+          <div class="bg-green-300 p-4 w-1/2 flex flex-col justify-between">
+            <div>
+              <div class="font-semibold mb-2">둘.</div>
+              <div class="text-sm leading-relaxed">
+                우리의 목소리, 몸짓,<br />
+                우리의 달란트로<br />
+                하나님께 올려드리는 찬양
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 셋 -->
+      <div class="flex flex-col items-center px-4 mb-10">
+        <div class="flex flex-row w-full max-w-md rounded-xl overflow-hidden shadow-lg">
+          <div class="bg-blue-500 text-white p-4 w-1/2 flex flex-col justify-between">
+            <div>
+              <div class="font-semibold mb-2">셋.</div>
+              <div class="text-sm leading-relaxed">
+                주중에도 자꾸만 우리 생각난다는<br />
+                사랑둥이 선생님들과의 반모임
+              </div>
+            </div>
+          </div>
+          <div class="w-1/2 bg-gray-100">
+            <img src="images/worship/isometric-stickers-books0.png" alt="선생님들과 반모임" class="w-full h-full object-cover"/>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 하단 크라운 영역 -->
+      <div class="bg-pink-300 w-full h-20 rounded-t-[50px] mb-6"></div>
     </div>
     
     <!-- 우리의 성장 챕터 -->
@@ -260,9 +318,9 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
-  <script src="stickers.js"></script>
-  <script src="scroll-to-top.js"></script>
+  <script src="js/script.js" defer></script>
+  <script src="js/stickers.js" defer></script>
+  <script src="js/scroll-to-top.js" defer></script>
 <!-- 2. 설치 스크립트: 지도 퍼가기 서비스가 2개 이상일 때, 이 스크립트는 한 번만 넣으면 됩니다. -->
 <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 <!-- 3. 실행 스크립트 -->

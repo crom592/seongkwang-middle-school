@@ -1,0 +1,122 @@
+/* 우리의 예배 섹션 스타일 */
+.worship-section {
+  position: relative;
+  padding: 40px 0;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.emoji-decoration {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.emoji {
+  position: absolute;
+  font-size: 24px;
+}
+
+.emoji:nth-child(1) {
+  top: 0;
+  left: 20%;
+}
+
+.emoji:nth-child(2) {
+  top: 0;
+  right: 20%;
+}
+
+.emoji.piano {
+  bottom: -60px;
+  right: 10%;
+  font-size: 28px;
+}
+
+.worship-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.worship-card {
+  position: relative;
+  background-color: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+}
+
+.card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+}
+
+.first-card .card-bg {
+  background-color: #FFE9F3;
+}
+
+.second-card .card-bg {
+  background-color: #E8F4FF;
+}
+
+.third-card .card-bg {
+  background-color: #FFF4E5;
+}
+
+.worship-text {
+  flex: 1;
+  z-index: 1;
+  padding-right: 20px;
+}
+
+.number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+.main-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.5;
+}
+
+.sub-text {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.worship-img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 180px;
+  max-height: 180px;
+  object-fit: contain;
+  z-index: 0;
+}
+
+.worship-img.books {
+  max-width: 140px;
+  max-height: 140px;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* 반응형 미디어 쿼리 제거 - 모바일 스타일만 유지 */

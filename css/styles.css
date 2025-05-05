@@ -52,7 +52,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('첫화면.png');
+  background-image: url('../images/hero/첫화면.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -169,45 +169,25 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* 모바일 스타일: 500px 이하 */
-@media (max-width: 500px) {
-  .main-hero-background {
-    background-size: contain;
-    background-position: center;
-  }
-  
-  .main-hero-buttons {
-    top: 64%; /* 모바일에서도 날짜 시간과 welcome 문구 사이에 위치하도록 유지 */
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .main-hero-btn {
-    width: 160px;
-    height: 34px;
-    font-size: 14px;
-  }
+.info-group {
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* 모바일 최적화: 첫 번째 섹터(히어로) */
-@media (max-width: 430px) {
-  .info-group {
-    flex-direction: column;
-    gap: 12px;
-  }
-  .info-item {
-    max-width: 100%;
-    padding: 15px 7px 12px 7px;
-  }
-  .ministry-info .section-title {
-    font-size: 1.08rem;
-    margin: 26px 0 10px 0;
-  }
-  .call-to-action {
-    font-size: 1.06rem;
-    padding: 16px 4px 13px 4px;
-    margin: 24px 0 0 0;
-  }
+.info-item {
+  max-width: 100%;
+  padding: 15px 7px 12px 7px;
+}
+
+.ministry-info .section-title {
+  font-size: 1.08rem;
+  margin: 26px 0 10px 0;
+}
+
+.call-to-action {
+  font-size: 1.06rem;
+  padding: 16px 4px 13px 4px;
+  margin: 24px 0 0 0;
 }
 
 /* 성광중등부 소개/홍보 섹션 스타일 (모바일 앱 감성, 따뜻함 강조) */
@@ -518,28 +498,6 @@ body {
   .main-hero-title {
     font-size: 1.5rem;
   }
-}
-
-/* 태블릿 및 데스크탑 스타일 */
-@media (min-width: 900px) {
-  .main-hero {
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary-color);
-  }
-  .main-hero-inner {
-    max-width: 500px;
-    padding: 48px 48px 56px 48px;
-    border-radius: 28px;
-    box-shadow: 0 8px 48px rgba(44,62,80,0.11);
-  }
-  .main-hero-illustration {
-    max-width: 320px;
-    margin-bottom: 36px;
-  }
-  .main-hero-title {
-    font-size: 2.7rem;
     margin-bottom: 18px;
   }
   .main-hero-subtitle {
@@ -1081,55 +1039,15 @@ footer {
   transform: translateY(0);
 }
 
-/* 반응형 디자인 */
-@media (max-width: 992px) {
-  .hero h1 {
-    font-size: 2.8rem;
-  }
-  
-  .about-content, 
-  .join-content, 
-  .location-content {
-    flex-direction: column;
-  }
-  
-  .location-content {
-    gap: 20px;
-  }
+/* 모바일 레이아웃 */
+.hero h1 {
+  font-size: 2rem;
 }
 
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-  
-  .hero p {
-    font-size: 1.2rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .footer-content {
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .footer-links, 
-  .footer-social {
-    justify-content: center;
-  }
+.hero p {
+  font-size: 1rem;
 }
 
-@media (max-width: 576px) {
-  .cta-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .btn {
-    margin: 0;
-  }
+.features-grid {
+  grid-template-columns: 1fr;
 }

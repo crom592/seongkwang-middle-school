@@ -1,24 +1,14 @@
-/* 스티커 컨테이너 스타일 */
-.sticker-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 900;
-  overflow: hidden;
-}
-
-/* 개별 스티커 스타일 */
+/* 스티커 스타일 */
 .sticker {
   position: absolute;
   cursor: grab;
   pointer-events: auto;
   user-select: none;
-  z-index: 999;
+  z-index: 10;
   transition: transform 0.2s ease;
 }
+
+
 
 .sticker:active {
   cursor: grabbing;
@@ -32,6 +22,11 @@
   pointer-events: none;
 }
 
+/* 스티커 그룹 스타일 */
+.sticker-group {
+  position: relative;
+}
+
 /* 스티커 라벨 스타일 */
 .sticker-label {
   position: absolute;
@@ -42,33 +37,77 @@
   line-height: 114%;
   font-weight: 400;
   pointer-events: none;
-  z-index: 1000;
+  z-index: 20;
 }
 
-.sticker-label-friends {
-  right: 52.99%;
-  left: 17.66%;
-  width: 29.35%;
-  top: 37.9%;
+/* 그룹 1: 중등부 친구들 */
+.sticker-group-1 {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 120px;
+  height: 120px;
 }
 
-.sticker-label-playful {
-  left: -12px;
-  top: 277px;
+.sticker-group-1 .sticker {
+  transform: rotate(-16.434deg);
+}
+
+.sticker-group-1 .sticker-label {
+  right: auto;
+  left: -120px;
+  top: 20px;
+  width: 100px;
+}
+
+/* 그룹 2: 개구잭이 친구들 */
+.sticker-group-2 {
+  position: absolute;
+  left: -11px;
+  top: 329px;
+  width: 180px;
+  height: 100px;
+}
+
+.sticker-group-2 .sticker-label {
+  left: 20px;
+  top: -50px;
   width: 118px;
 }
 
-.sticker-label-pastor {
-  right: 39.55%;
-  left: 31.09%;
-  width: 29.35%;
-  top: 10.26%;
+/* 그룹 3: 멋잭이 강도사님 */
+.sticker-group-3 {
+  position: absolute;
+  left: 73.73px;
+  top: 10px;
+  width: 120px;
+  height: 120px;
 }
 
-.sticker-label-teachers {
-  left: 142px;
-  top: 478px;
-  width: 146px;
+.sticker-group-3 .sticker {
+  transform: rotate(22.823deg);
+}
+
+.sticker-group-3 .sticker-label {
+  right: auto;
+  left: 30px;
+  top: -30px;
+  width: 100px;
+}
+
+/* 그룹 4: 사랑둥이 선생님들 */
+.sticker-group-4 {
+  position: absolute;
+  right: 20px;
+  top: 392px;
+  width: 120px;
+  height: 120px;
+}
+
+.sticker-group-4 .sticker-label {
+  right: 30px;
+  top: -50px;
+  width: 100px;
 }
 
 /* 스티커 크기 조정 */

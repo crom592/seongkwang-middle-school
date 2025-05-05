@@ -30,9 +30,6 @@ body {
 
 .main-hero {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #f8f8f8;
   position: relative;
   overflow: hidden;
@@ -41,47 +38,90 @@ body {
   box-sizing: border-box;
 }
 
-.main-hero-inner {
+.main-hero-content {
   width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
-  background: transparent;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
+}
+
+/* 메인 타이틀 (A Letter) */
+.main-hero-title {
+  position: absolute;
+  left: 50%;
+  top: 160px;
+  transform: translateX(-50%);
   z-index: 2;
 }
 
 .main-hero-title-img {
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 20px;
+  width: 300px;
+  height: auto;
   display: block;
+}
+
+/* from Him */
+.main-hero-from {
+  position: absolute;
+  left: 50%;
+  top: 290px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.main-hero-from-text {
+  font-family: 'Times New Roman', serif;
+  font-size: 36px;
+  color: #000;
+  font-style: italic;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* 날짜 시간 */
+.main-hero-date {
+  position: absolute;
+  left: 50%;
+  top: 400px;
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
 .main-hero-date-img {
-  width: 100%;
-  max-width: 260px;
-  margin-bottom: 20px;
+  width: 260px;
+  height: auto;
   display: block;
 }
 
+/* 웰컴 텍스트 */
+.main-hero-welcome {
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
 .main-hero-welcome-img {
-  width: 100%;
-  max-width: 280px;
-  margin-top: 30px;
+  width: 280px;
+  height: auto;
   display: block;
 }
 
 .main-hero-buttons {
+  position: absolute;
+  left: 50%;
+  top: 480px;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  max-width: 220px;
   align-items: center;
-  margin-top: 20px;
+  z-index: 2;
 }
 
 .main-hero-btn {
@@ -95,7 +135,7 @@ body {
   color: #ffffff;
   text-align: center;
   font-family: 'Montserrat-Medium', 'Noto Sans KR', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 114%;
   font-weight: 500;
   border: none;
@@ -105,14 +145,11 @@ body {
   transition: all 0.2s ease;
 }
 
-.main-hero-btn img {
-  width: 100%;
-  height: auto;
-}
-
 .main-hero-btn:hover {
   opacity: 0.9;
 }
+
+/* 모바일 스타일: 500px 이하 */
 @media (max-width: 500px) {
   /* 기존 500px 이하 스타일 유지 */
 }

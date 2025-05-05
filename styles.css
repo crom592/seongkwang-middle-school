@@ -154,14 +154,12 @@ body {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 800;
-  margin: 50px 0 20px 0;
+  margin: 50px auto 20px auto;
   letter-spacing: -1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   position: relative;
   padding-bottom: 12px;
+  width: 100%;
+  max-width: 300px;
 }
 .ministry-info .section-title::after {
   content: '';
@@ -174,21 +172,7 @@ body {
   background: #a07cf7;
   border-radius: 3px;
 }
-.ministry-info .section-title:nth-of-type(1)::before {
-  content: '💌';
-  font-size: 1.1em;
-  margin-right: 4px;
-}
-.ministry-info .section-title:nth-of-type(2)::before {
-  content: '🌱';
-  font-size: 1.1em;
-  margin-right: 4px;
-}
-.ministry-info .section-title:nth-of-type(3)::before {
-  content: '🎉';
-  font-size: 1.1em;
-  margin-right: 4px;
-}
+/* 이모지 제거 */
 .info-group {
   display: flex;
   flex-direction: column;

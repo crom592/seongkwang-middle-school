@@ -183,6 +183,7 @@ body {
 .info-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 18px;
   padding: 0 12px;
   margin-bottom: 40px;
@@ -196,6 +197,8 @@ body {
   text-align: center;
   font-size: 1.05rem;
   position: relative;
+  width: 100%;
+  max-width: 400px;
 }
 .info-item h3 {
   color: #a07cf7;

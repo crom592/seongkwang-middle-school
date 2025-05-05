@@ -658,6 +658,22 @@ section {
   position: relative;
 }
 
+.ministry-chapter {
+  margin-bottom: 40px;
+  padding: 20px 0;
+  position: relative;
+}
+
+/* 챕터 이미지 스타일 */
+.chapter-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto 20px auto;
+  display: block;
+  border-radius: 10px;
+}
+
 .section-title::after {
   content: '';
   position: absolute;

@@ -9,6 +9,7 @@ function initLetterSlider() {
   const prevBtn = document.querySelector('.slider-prev');
   const nextBtn = document.querySelector('.slider-next');
   const dotsContainer = document.querySelector('.slider-dots');
+  const sliderSection = document.querySelector('.letter-slider-section');
   
   // 요소가 없으면 종료
   if (!slider || !cards.length || !prevBtn || !nextBtn || !dotsContainer) {
@@ -26,12 +27,17 @@ function initLetterSlider() {
   
   // 현재 카드 인덱스 초기화
   let currentIndex = 0;
+  let touchSwipe = null;
+  let scrollSlider = null;
   
   /**
    * 슬라이드 이동 함수
    * @param {number} index - 이동할 카드 인덱스
    */
   function goToSlide(index) {
+    // 유효한 인덱스인지 확인
+    if (index < 0 || index >= cards.length) return;
+    
     // 현재 카드 비활성화
     cards[currentIndex].classList.remove('active');
     
@@ -44,10 +50,31 @@ function initLetterSlider() {
     // 도트 업데이트
     updateDots();
     
+    // 스크롤 슬라이더 업데이트
+    if (scrollSlider) {
+      scrollSlider.setCurrentSlide(currentIndex);
+    }
+    
     // 디버깅 로그
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       console.log(`카드 이동: ${index}`);
     }
+  }
+  
+  /**
+   * 다음 슬라이드로 이동
+   */
+  function goToNextSlide() {
+    const newIndex = (currentIndex + 1) % cards.length;
+    goToSlide(newIndex);
+  }
+  
+  /**
+   * 이전 슬라이드로 이동
+   */
+  function goToPrevSlide() {
+    const newIndex = (currentIndex - 1 + cards.length) % cards.length;
+    goToSlide(newIndex);
   }
   
   /**
@@ -94,27 +121,50 @@ function initLetterSlider() {
   goToSlide(0);
   
   // 이전 버튼 클릭 이벤트
-  prevBtn.addEventListener('click', () => {
-    const newIndex = (currentIndex - 1 + cards.length) % cards.length;
-    goToSlide(newIndex);
-  });
+  prevBtn.addEventListener('click', goToPrevSlide);
   
   // 다음 버튼 클릭 이벤트
-  nextBtn.addEventListener('click', () => {
-    const newIndex = (currentIndex + 1) % cards.length;
-    goToSlide(newIndex);
-  });
+  nextBtn.addEventListener('click', goToNextSlide);
   
   // 키보드 이벤트 처리
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
-      const newIndex = (currentIndex - 1 + cards.length) % cards.length;
-      goToSlide(newIndex);
+      goToPrevSlide();
     } else if (e.key === 'ArrowRight') {
-      const newIndex = (currentIndex + 1) % cards.length;
-      goToSlide(newIndex);
+      goToNextSlide();
     }
   });
+  
+  // 터치 스와이프 초기화
+  if (window.TouchSwipe) {
+    // 기존 터치 스와이프 인스턴스 제거
+    if (touchSwipe) {
+      // 기존 이벤트 리스너 제거 로직이 필요하다면 추가
+    }
+    
+    // 새 터치 스와이프 인스턴스 생성
+    touchSwipe = new TouchSwipe(slider, goToNextSlide, goToPrevSlide);
+    
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      console.log('터치 스와이프 초기화 완료');
+    }
+  }
+  
+  // 스크롤 슬라이더 초기화
+  if (window.ScrollSlider && sliderSection) {
+    // 기존 스크롤 슬라이더 인스턴스 제거
+    if (scrollSlider) {
+      // 기존 이벤트 리스너 제거 로직이 필요하다면 추가
+    }
+    
+    // 새 스크롤 슬라이더 인스턴스 생성
+    scrollSlider = new ScrollSlider(sliderSection, goToSlide);
+    scrollSlider.setCurrentSlide(currentIndex);
+    
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      console.log('스크롤 슬라이더 초기화 완료');
+    }
+  }
   
   // 디버깅용 콘솔 로그
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

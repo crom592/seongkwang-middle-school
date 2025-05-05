@@ -557,21 +557,20 @@ section {
 /* 카카오맵 컨테이너 반응형 설정 */
 .root_daum_roughmap {
   width: 100% !important;
-  height: auto !important;
 }
 
-.root_daum_roughmap .wrap_map {
-  height: 0 !important;
-  padding-bottom: 75% !important; /* 4:3 비율 */
-  position: relative !important;
+/* 맵 렌더링 이후 적용할 스타일 (스크립트로 제어할 것) */
+.map-rendered .root_daum_roughmap .wrap_map {
+  padding-bottom: 75%;
+  position: relative;
 }
 
-.root_daum_roughmap .wrap_map iframe {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+.map-rendered .root_daum_roughmap .wrap_map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .location-info {

@@ -71,6 +71,37 @@ function initSmoothScroll() {
 }
 
 /**
+ * 카카오맵 반응형 렌더링 처리
+ * 지도가 완전히 로드되고 렌더링된 후 리사이징을 위한 스타일 적용
+ */
+function initKakaoMap() {
+  // 대기 후 랜더링 상태 확인 (DOMContentLoaded와 맵 초기화 시간차 고려)
+  setTimeout(() => {
+    const mapContainer = document.getElementById('daumRoughmapContainer1745679233203');
+    if (mapContainer) {
+      // 카카오맵 렌더링 후 스타일링을 위한 클래스 추가
+      const mapParent = mapContainer.closest('.map');
+      if (mapParent) {
+        mapParent.classList.add('map-rendered');
+      }
+      
+      // 윈도우 리사이즈 이벤트에 맵 상태 갱신
+      window.addEventListener('resize', () => {
+        // 카카오맵 API가 제공하는 객체가 있는지 확인
+        if (window.daum && window.daum.roughmap) {
+          try {
+            // 지도 갱신 시도
+            window.daum.roughmap.fromId('roughmap.2nu85').redraw();
+          } catch (e) {
+            // 오류 무시 - 카카오맵 API 호환성 이슈
+          }
+        }
+      });
+    }
+  }, 1000); // 1초 뒤 확인
+}
+
+/**
  * 페이지 로드 시 실행되는 초기화 함수
  */
 function initPage() {
@@ -78,6 +109,7 @@ function initPage() {
   initTestimonialSlider();
   initSmoothScroll();
   initLetterSlider();
+  initKakaoMap();
   
   // 개발 환경에서만 콘솔 로그 출력
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

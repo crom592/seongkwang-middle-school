@@ -541,10 +541,11 @@ section {
 .location-content {
   display: flex;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
 .map {
-  flex: 3;
+  flex: 1 1 450px; /* 최소 450px 너비, 하지만 유연하게 축소/확대 */
 }
 
 .map img {
@@ -553,8 +554,28 @@ section {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* 카카오맵 컨테이너 반응형 설정 */
+.root_daum_roughmap {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.root_daum_roughmap .wrap_map {
+  height: 0 !important;
+  padding-bottom: 75% !important; /* 4:3 비율 */
+  position: relative !important;
+}
+
+.root_daum_roughmap .wrap_map iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .location-info {
-  flex: 2;
+  flex: 1 1 300px; /* 최소 300px 너비, 하지만 유연하게 축소/확대 */
   background-color: white;
   border-radius: 10px;
   padding: 30px;

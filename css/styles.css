@@ -937,6 +937,42 @@ section {
   }
 }
 
+/* Letter Slider Arrow Buttons */
+.letter-slider-section .slider-container {
+  position: relative; /* Ensure this is here for button positioning */
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px; /* Space above buttons */
+  gap: 10px; /* Space between buttons */
+}
+
+.slider-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.slider-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slider-btn.hidden {
+  display: none;
+}
+
 /* 위치 섹션 */
 .location-content {
   display: flex;

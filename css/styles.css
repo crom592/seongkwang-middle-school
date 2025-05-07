@@ -193,14 +193,24 @@ body {
 /* 성광중등부 소개/홍보 섹션 스타일 (모바일 앱 감성, 따뜻함 강조) */
 .ministry-info {
   background: #fffaf6;
-  padding: 26px 0 18px 0;
+  padding: 0;
 }
 
 /* 각 챕터별 배경색 구분 */
 .ministry-chapter {
-  padding: 30px 0;
+  padding: 0;
   margin-bottom: 15px;
   border-radius: 0 0 30px 30px;
+}
+
+/* 챕터 이미지 스타일 */
+.chapter-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 .ministry-chapter:nth-of-type(1) {
   background: #f7f4ff;
@@ -515,7 +525,6 @@ body {
     font-size: 1.18rem;
     padding: 18px 0;
   }
-}
 
 .main-hero-illustration {
   width: 100%;
@@ -524,8 +533,6 @@ body {
   margin-bottom: 24px;
   display: block;
 }
-
-
 
 .letter-slider-section,
 .about,
@@ -576,7 +583,7 @@ footer {
 /* 버튼 스타일 */
 .btn {
   display: inline-block;
-  padding: 12px 32px;
+  padding: 2px 25px;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
@@ -589,32 +596,33 @@ footer {
 }
 
 .primary-btn {
-  background: #3C5595;
+  background: #F39DC6;
   color: #fff;
-  border: 2px solid #3C5595;
+  border: 2px solid #F39DC6;
+  border-radius: 25px; /* Added for pill shape */
 }
 
 .primary-btn:hover, .primary-btn:focus {
-  background: #2d4172; /* 어두운 톤의 네이비 */
+  background: #F39DC6; /* 어두운 톤의 네이비 */
   color: #fff;
-  border-color: #2d4172;
+  border-color: #F39DC6;
   box-shadow: 0 4px 16px rgba(60,85,149,0.2);
 }
 
 .secondary-btn {
   background: #fff;
-  color: #3C5595;
-  border: 2px solid #3C5595;
+  color: #F39DC6;
+  border: 2px solid #F39DC6;
 }
 
 .secondary-btn:hover, .secondary-btn:focus {
-  background: #3C5595;
+  background: #F39DC6;
   color: #fff;
-  border-color: #3C5595;
+  border-color: #F39DC6;
 }
 
 .slider-prev, .slider-next {
-  background: #ff7f50;
+  background: #F39DC6;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -627,7 +635,7 @@ footer {
 }
 
 .slider-prev:hover, .slider-next:hover {
-  background: #ff4f1f;
+  background: #F39DC6;
   box-shadow: 0 4px 16px rgba(255,127,80,0.13);
 }
 
@@ -863,68 +871,70 @@ section {
 }
 .letter-slider {
   display: flex;
+  /* width는 각 letter-card의 min-width와 개수에 따라 자동 계산됨 */
+  /* height는 letter-card에 의해 결정됨 */
+}
+
+.letter-slider-section .slider-container {
+  position: relative;
+  width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 24px;
-  margin: 30px 0 16px 0;
-  padding-bottom: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-.letter-card {
-  min-width: 320px;
-  max-width: 380px;
-  flex: 0 0 80%;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(44,62,80,0.10);
-  padding: 32px 24px;
-  font-size: 1.1rem;
-  color: #222;
-  scroll-snap-align: center;
-  transition: box-shadow 0.2s;
-  margin: 0 auto;
+
+.letter-slider-section .letter-slider {
+  display: flex;
+  width: 500%; /* 5 cards * 100% view width per card */
 }
-.letter-card:focus, .letter-card:hover {
-  box-shadow: 0 8px 32px rgba(52,152,219,0.18);
-  outline: none;
-}
-.letter-slider-nav {
+
+.letter-slider-section .letter-card {
+  min-width: auto; /* Override previous min-width: 100% */
+  flex: 0 0 20%; /* Each card is 1/5th of the .letter-slider width */
+  height: 600px; 
+  background-color: white;
+  color: #333;
+  overflow: hidden; 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+  padding: 0; 
+  /* Addition for CSS scroll */
+  scroll-snap-align: start;
 }
-.slider-prev, .slider-next {
-  background: #3C5595;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(60,85,149,0.15);
-}
-.slider-prev:hover, .slider-next:hover {
-  background: #2d4172;
-  box-shadow: 0 4px 12px rgba(60,85,149,0.25);
-}
-.slider-dots {
+
+.letter-slider-section .letter-content {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
 }
-.slider-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ddd;
-  border: 1px solid #3C5595;
-  transition: background 0.2s;
-  cursor: pointer;
+
+.letter-slider-section .letter-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%; 
+  object-fit: contain;
 }
-.slider-dot.active {
-  background: #3C5595;
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 768px) {
+  .letter-slider-section .slider-container {
+    height: auto; /* 모바일에서는 이미지 높이에 따라 자동 조절 */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .letter-slider-section .letter-image {
+    max-height: 80vh; /* 모바일 화면 높이의 80%를 최대 높이로 설정 */
+  }
+
+  .letter-slider-section .letter-card {
+    height: 80vh; /* 모바일용 카드 높이 설정 */
+  }
 }
 
 /* 위치 섹션 */
@@ -982,7 +992,7 @@ section {
 }
 
 .location-info i {
-  color: var(--primary-color);
+  color: #F39DC6;
   margin-right: 10px;
 }
 
@@ -1065,4 +1075,78 @@ footer {
 
 .features-grid {
   grid-template-columns: 1fr;
+}
+
+/* 그리스도의 편지 이미지 슬라이더 스타일 */
+.letter-slider-section {
+  padding: 40px 0;
+  background-color: #f8f8f8; /* 기존 letter.css 와 동일한 배경색 유지 */
+}
+
+.letter-slider-section .container {
+  max-width: 800px; /* 데스크탑에서의 최대 너비 */
+  margin: 0 auto;
+  position: relative;
+}
+
+.letter-slider-section .slider-container {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.letter-slider-section .letter-slider {
+  display: flex;
+  width: 500%; /* 5 cards * 100% view width per card */
+}
+
+.letter-slider-section .letter-card {
+  min-width: auto; /* Override previous min-width: 100% */
+  flex: 0 0 20%; /* Each card is 1/5th of the .letter-slider width */
+  height: 600px; /* 데스크탑용 카드 높이 설정 */
+  background-color: white;
+  color: #333;
+  overflow: hidden; /* 카드 내부 내용이 넘칠 경우 숨김 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* 이미지 자체에 패딩이 있을 수 있으므로 카드 패딩 제거 */
+  /* Addition for CSS scroll */
+  scroll-snap-align: start;
+}
+
+.letter-slider-section .letter-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.letter-slider-section .letter-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%; 
+  object-fit: contain;
+}
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 768px) {
+  .letter-slider-section .slider-container {
+    height: auto; /* 모바일에서는 이미지 높이에 따라 자동 조절 */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .letter-slider-section .letter-image {
+    max-height: 80vh; /* 모바일 화면 높이의 80%를 최대 높이로 설정 */
+  }
+
+  .letter-slider-section .letter-card {
+    height: 80vh; /* 모바일용 카드 높이 설정 */
+  }
 }

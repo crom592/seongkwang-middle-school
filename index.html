@@ -8,15 +8,80 @@
   <link rel="stylesheet" href="css/stickers.css">
   <link rel="stylesheet" href="css/worship-section.css">
   <link rel="stylesheet" href="css/scroll-to-top.css">
-  <link rel="stylesheet" href="css/letter.css">
+  <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* 모바일 우선 스타일 - 반응형 없이 모바일 레이아웃만 사용 */
     .max-w-md { max-width: 28rem; }
+    
+    /* 섹션 표시/숨김 관련 스타일 */
+    .section-container {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .section-container.active {
+      display: block;
+      opacity: 1;
+    }
+    
+    /* 네비게이션 스타일 */
+    .main-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 10px 0;
+    }
+    
+    .nav-items {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #666;
+      text-decoration: none;
+      font-size: 12px;
+      padding: 5px 0;
+    }
+    
+    .nav-item i {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    
+    .nav-item.active {
+      color: #ff8eb4;
+    }
+    
+    /* 페이지 여백 조정 */
+    body {
+      padding-bottom: 70px; /* 네비게이션 바 높이만큼 여백 추가 */
+    }
+    
+    /* 섹션 전환 애니메이션 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
   </style>
 </head>
 <body>
@@ -24,282 +89,152 @@
   <div class="scroll-to-top" id="scrollToTop">
     <i class="fas fa-arrow-up"></i>
   </div>
-  <section class="main-hero" id="home">
-    <div class="main-hero-content">
-      <!-- 첫화면 이미지 -->
-      <img src="images/hero/첫화면.png" alt="첫화면" class="chapter-image" style="max-width: 100%; margin-bottom: 20px;">
-      
-      <!-- 버튼 -->
-      <div class="main-hero-buttons">
-        <a href="#letter-slider" class="main-hero-btn">편지 읽어보기</a>
-        <a href="#ministry-info" class="main-hero-btn">잔치 둘러보기</a>
-      </div>
-      
-      <!-- 스티커 컨테이너 -->
-      <div class="sticker-container">
-        <!-- 스티커는 사용자가 직접 추가할 예정 -->
-      </div>
-    </div>
-</section>
 
-  <!-- 그리스도의 편지 카드 슬라이더 -->
-  <section class="letter-slider-section" id="letter-slider">
-    <div class="container">
-      <div class="letter-slider-wrapper">
-        <div class="letter-slider">
-          <!-- 첫 번째 카드: 표지 -->
-          <div class="letter-card" id="letter-cover">
-            <div class="letter-content">
-              <!-- 첫 번째 장은 표지 이미지만 표시 -->
-            </div>
-          </div>
-          <div class="letter-card">
-            <div class="letter-content">
-              여러분, 러브레터를 받아본 적이 있나요?<br><br>
-              누군가의 진심 어린 사랑이 담긴 편지를 받는 순간의 설렘과 행복감은 말로 표현하기 어렵습니다. 사랑받는다는 것… 그 어떤 경험도 우리를 이토록 소중하고 가치 있는 존재로 느끼게 하지 못합니다.
-            </div>
-          </div>
-          <div class="letter-card">
-            <div class="letter-content">
-              하지만 삶 속에서 우리는 늘 사랑받는 기분을 느끼는 것은 아닙니다. 오히려 그렇지 않은 순간들이 더 많을지도 모릅니다.<br><br>
-            </div>
-          </div>
-          <div class="letter-card">
-            <div class="letter-content">
-              짝사랑하는 마음이 전해지지 않을 때<br>
-              연인이 내가 바라는 만큼 나를 사랑하지 않는 것 같을 때<br>
-              시험 성적이 좋지 않아 부모님께 실망을 안겨드릴 때<br>
-              친구들 사이에서 소외감을 느낄 때<br>
-              SNS에 올린 게시물이 별다른 반응을 얻지 못할 때<br>
-              어른이 되어서는 직장에서 인정받지 못하고 있다고 느낄 때
-            </div>
-          </div>
-          <div class="letter-card">
-            <div class="letter-content">
-              이런 여러 순간들에서 우리는 '사랑받지 못하고 있다'는 씁쓸한 감정이 생기죠.<br><br>
-              모든 사람은 본능적으로 사랑받고 싶어 합니다. 인정받고 싶고, 소중한 존재이고 싶은 간절한 열망이 있습니다. 그래서 우리는 사랑을 얻기 위해, 사랑받을 만한 자격이 있는 사람이 되기 위해 끊임 없이 노력하지만, 그 노력이 항상 보답받는 것은 아닙니다.
-            </div>
-          </div>
-          <div class="letter-card">
-            <div class="letter-content">
-              그러나 아시나요?<br><br>
-              이 세상에 여러분을 무조건적으로 사랑하시는 분이 계십니다. 여러분의 자격이나 성취와 상관없이, 있는 그대로의 여러분을 깊이 사랑하시는 분이 계십니다. 바로 예수님입니다.
-            </div>
-          </div>
-          <div class="letter-card">
-            <div class="letter-content">
-              예수님은 여러분을 위해 기쁜 마음으로 잔치를 준비하고 계시고 여러분이 오기만을 기다리고 계십니다. 예수님은 여러분을 두 팔 벌려 환영하십니다.<br><br>
-              여러분을 기다리는 예수님께 한 걸음 다가 오지 않을래요?
-            </div>
-          </div>
+  <!-- 홈 섹션 -->
+  <section class="section-container active" id="home-section">
+    <div class="main-hero" id="home">
+      <div class="main-hero-content">
+        <!-- 첫화면 이미지 -->
+        <img src="images/hero/첫화면.png" alt="첫화면" class="chapter-image" style="max-width: 100%; margin-bottom: 20px;">
+        
+        <!-- 버튼 -->
+        <!-- <div class="main-hero-buttons">
+          <a href="#" class="main-hero-btn" onclick="showSection('letter-section'); return false;">편지 읽어보기</a>
+          <a href="#" class="main-hero-btn" onclick="showSection('ministry-section'); return false;">잔치 둘러보기</a>
+        </div> -->
+        
+        <!-- 스티커 컨테이너 -->
+        <div class="sticker-container">
+          <!-- 스티커는 사용자가 직접 추가할 예정 -->
         </div>
-      </div>
-      <div class="letter-slider-nav">
-        <button class="slider-prev" aria-label="이전">&#60;</button>
-        <div class="slider-dots"></div>
-        <button class="slider-next" aria-label="다음">&#62;</button>
       </div>
     </div>
   </section>
 
-  <!-- 성광중등부 소개/홍보 섹션 -->
-  <section class="ministry-info" id="ministry-info">
-    <!-- 우리의 예배 챕터 -->
-    <div class="ministry-chapter our-worship">
-      <!-- 상단 크라운 영역 -->
-      <!-- <div class="bg-pink-300 w-full h-20 rounded-b-[50px] mb-6"></div> -->
-      
-      <!-- 제목 -->
-      <h2 class="text-center text-2xl font-bold my-6">
-        🥳 우리의 예배 🥳
-      </h2>
-      
-      <!-- 하나 -->
-      <div class="flex flex-col items-center px-4 mb-6">
-        <div class="flex flex-row w-full max-w-md rounded-xl overflow-hidden shadow-lg">
-          <div class="bg-yellow-400 p-4 w-1/2 flex flex-col justify-between">
-            <div>
-              <div class="flex justify-center mb-3">
-                <img src="images/worship/우리의 예배 - 하나 icon.png" alt="하나 아이콘" class="w-10 h-10 object-contain" />
-              </div>
-              <div class="font-semibold mb-2">하나.</div>
-              <div class="text-sm leading-relaxed">
-                영성, 지성, 인성, 훈훈함, 유머감각까지 겸비한<br />
-                강도사님의 통찰력있는 말씀
-              </div>
-            </div>
-            <div class="mt-4">
-              <a href="#" class="inline-block bg-white px-3 py-1 text-sm font-bold text-black rounded-full shadow">
-                → 영상 퀴즈! 보러가기
-              </a>
-            </div>
-          </div>
-          <div class="w-1/2 bg-gray-100">
-            <img src="images/worship/우리의 예배-하나.png" alt="강도사님" class="w-full h-full object-cover"/>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 둘 -->
-      <div class="flex flex-col items-center px-4 mb-6">
-        <div class="flex flex-row w-full max-w-md rounded-xl overflow-hidden shadow-lg">
-          <div class="w-1/2 bg-gray-100">
-            <img src="images/worship/우리의 예배-둘.svg" alt="찬양 모습" class="w-full h-full object-cover"/>
-          </div>
-          <div class="bg-green-300 p-4 w-1/2 flex flex-col justify-between">
-            <div>
-              <div class="flex justify-center mb-3">
-                🎹
-              </div>
-              <div class="font-semibold mb-2">둘.</div>
-              <div class="text-sm leading-relaxed">
-                우리의 목소리, 몸짓,<br />
-                우리의 달란트로<br />
-                하나님께 올려드리는 찬양
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 셋 -->
-      <div class="flex flex-col items-center px-4 mb-10">
-        <div class="flex flex-row w-full max-w-md rounded-xl overflow-hidden shadow-lg">
-          <div class="bg-blue-500 text-white p-4 w-1/2 flex flex-col justify-between">
-            <div>
-              <div class="flex justify-center mb-3">
-                <img src="images/worship/우리의 예배-셋 icon.png" alt="셋 아이콘" class="w-10 h-10 object-contain" />
-              </div>
-              <div class="font-semibold mb-2">셋.</div>
-              <div class="text-sm leading-relaxed">
-                주중에도 자꾸만 우리 생각난다는<br />
-                사랑둥이 선생님들과의 반모임
-              </div>
-            </div>
-          </div>
-          <div class="w-1/2 bg-gray-100">
-            <img src="images/worship/우리의 예배-셋.jpeg" alt="선생님들과 반모임" class="w-full h-full object-cover"/>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 하단 크라운 영역 -->
-      <!-- <div class="bg-pink-300 w-full h-20 rounded-t-[50px] mb-6"></div> -->
-    </div>
+  <!-- 편지 섹션 -->
+  <section class="section-container" id="letter-section">
     
-    <!-- 우리의 성장 챕터 -->
-    <div class="ministry-chapter our-growth">
-      <img src="images/우리의성장.png" alt="우리의 성장" class="chapter-image">
-    </div>
-    <!-- 우리의 성장 챕터 -->
-    <section class="testimonials" id="testimonials">
+    <!-- 그리스도의 편지 이미지 슬라이더 -->
+    <div class="letter-slider-section">
       <div class="container">
+        <div class="slider-container">
+          <div class="letter-slider">            
+            <!-- 원래 이미지들 - 번호 순서대로 -->
+            <div class="letter-card" id="letter-1">
+              <div class="letter-content">
+                <img src="images/letter/1.png" alt="편지 이미지 1" class="letter-image">
+              </div>
+            </div>
+            <div class="letter-card" id="letter-2">
+              <div class="letter-content">
+                <img src="images/letter/2.png" alt="편지 이미지 2" class="letter-image">
+              </div>
+            </div>
+            <div class="letter-card" id="letter-3">
+              <div class="letter-content">
+                <img src="images/letter/3.png" alt="편지 이미지 3" class="letter-image">
+              </div>
+            </div>
+            <div class="letter-card" id="letter-4">
+              <div class="letter-content">
+                <img src="images/letter/4.png" alt="편지 이미지 4" class="letter-image">
+              </div>
+            </div>
+            <div class="letter-card" id="letter-5">
+              <div class="letter-content">
+                <img src="images/letter/5.png" alt="편지 이미지 5" class="letter-image">
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 중등부 소개 섹션 -->
+  <section class="section-container" id="ministry-section">
+    
+    <!-- 성광중등부 소개/홍보 섹션 -->
+    <div class="ministry-info" style="margin: 0; padding: 0; width: 100%; max-width: 100%;">
+      <!-- 우리의 예배 챕터 -->
+      <div class="ministry-chapter our-worship">
+        <img src="images/worship/우리의예배.png" alt="우리의 예배" class="chapter-image">
+      </div>
+      
+      <!-- 우리의 성장 챕터 -->
+      <div class="ministry-chapter our-growth">
+        <img src="images/우리의성장.png" alt="우리의 성장" class="chapter-image">
+      </div>
+      
+      <!-- 우리가 말하는 성광 중등부 챕터 -->
+      <div class="ministry-chapter testimonials">
         <img src="images/우리가 말하는 성광 중등부.png" alt="우리가 말하는 성광 중등부" class="chapter-image">
       </div>
-    </section>
-    <!-- 그래서 그 날 뭐해? 챕터 -->
-    <div class="ministry-chapter what-we-do">
-      <img src="images/그래서그날뭐해.png" alt="그래서 그날 뭐해?" class="chapter-image">
+      
+      <!-- 그래서 그 날 뭐해? 챕터 -->
+      <div class="ministry-chapter what-we-do">
+        <img src="images/그래서그날뭐해.png" alt="그래서 그날 뭐해?" class="chapter-image">
+      </div>
     </div>
-    <!-- 오시는 길(지도 등) 섹션은 기존 Kakao Map 영역 활용 -->
   </section>
 
-
-
-  <!-- <section class="video-section" id="video">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll">우리의 이야기</h2>
-      <div class="video-container animate-on-scroll">
-        <video src="summer_sk_church_middle.mp4" controls autoplay playsinline class="cropped-video" style="width:100%; max-width:700px; height:400px; object-fit:cover; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.1);" title="성광교회 중등부 소개 영상">
-  브라우저가 video 태그를 지원하지 않습니다. <a href="summer_sk_church_middle.mp4">summer_sk_church_middle.mp4</a> 파일을 다운로드하여 시청해 주세요.
-</video>
-      </div>
-      <p class="video-description animate-on-scroll" style="margin-top:10px;">성광교회 중등부의 다양한 활동과 따뜻한 공동체의 모습을 영상으로 만나보세요.</p>
-    </div>
-  </section> -->
-
-  <!-- <section class="join-us" id="join">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll">함께해요</h2>
-      <div class="join-content">
-        <div class="join-text animate-on-scroll">
-          <p>성광교회 중등부는 언제나 여러분을 환영합니다. 매주 일요일 오전 11시 20분, 함께 예배드리고 다양한 활동을 통해 믿음 안에서 성장해요.</p>
-          <p>처음 오는 친구들을 위한 특별한 선물도 준비되어 있습니다!</p>
-          <div class="join-buttons">
-            <a href="#location" class="btn primary-btn">오는 길</a>
-            <a href="tel:+8210XXXXXXXX" class="btn secondary-btn">문의하기</a>
+  <!-- 오시는 길 섹션 -->
+  <section class="section-container" id="location-section">
+    
+    <div class="location">
+      <div class="container">
+        <div class="location-content">
+          <div class="map">
+            <!-- 카카오맵 지도 -->
+            <div id="daumRoughmapContainer1745679233203" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%; height:400px; margin-bottom:20px;"></div>
           </div>
-        </div>
-        <div class="join-image animate-on-scroll">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" alt="함께하는 청소년들">
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <section class="location" id="location">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll">오는 길</h2>
-      <div class="location-content">
-        <div class="map animate-on-scroll">
-          <!-- 카카오맵 지도 -->
-          <div id="daumRoughmapContainer1745679233203" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%; height:400px; margin-bottom:20px;"></div>
-        </div>
-        <div class="location-info animate-on-scroll">
-          <h3>성광교회</h3>
-          <p><i class="fas fa-map-marker-alt"></i> 11945 경기도 구리시 검배로 136번길 32(토평동) 성광교회</p>
-          <p><i class="fas fa-clock"></i> 예배시간: 매주 일요일 오전 11시 20분</p>
-          <p><i class="fas fa-phone"></i> TEL. 031-563-5210</p>
-          <p><i class="fas fa-fax"></i> FAX. 031-553-1398</p>
-          <p><i class="fas fa-envelope"></i> EMAIL. helpsk21church@gmail.com</p>
-          <div style="margin-top:20px;">
-            <a href="https://naver.me/xyTXM2o6" class="btn primary-btn" target="_blank" rel="noopener">네이버 지도</a>
-            <a href="https://kko.kakao.com/pnT7w2c-cr" class="btn primary-btn" target="_blank" rel="noopener">카카오맵</a>
-            <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=l7xxd4e3b2b4e2e24b6e8a8e8e8e8e8e8e8e8&name=성광교회&lon=127.142089&lat=37.600068" class="btn primary-btn" target="_blank" rel="noopener">티맵</a>
+          <div class="location-info">
+            <h3>성광교회</h3>
+            <p><i class="fas fa-map-marker-alt"></i> 11945 경기도 구리시 검배로 136번길 32(토평동) 성광교회</p>
+            <p><i class="fas fa-clock"></i> 예배시간: 매주 일요일 오전 11시 20분</p>
+            <p><i class="fas fa-phone"></i> TEL. 031-563-5210</p>
+            <p><i class="fas fa-fax"></i> FAX. 031-553-1398</p>
+            <p><i class="fas fa-envelope"></i> EMAIL. helpsk21church@gmail.com</p>
+            <div style="margin-top:20px;">
+              <a href="https://naver.me/xyTXM2o6" class="btn primary-btn" target="_blank" rel="noopener">네이버 지도</a>
+              <a href="https://kko.kakao.com/pnT7w2c-cr" class="btn primary-btn" target="_blank" rel="noopener">카카오맵</a>
+              <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=l7xxd4e3b2b4e2e24b6e8a8e8e8e8e8e8e8e8&name=성광교회&lon=127.142089&lat=37.600068" class="btn primary-btn" target="_blank" rel="noopener">티맵</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <h3>성광교회 중등부</h3>
-          <p>Letter from him</p>
-        </div>
-        <div class="footer-links">
-          <a href="#home">홈</a>
-          <a href="#about">소개</a>
-          <a href="#activities">활동</a>
-          <a href="#video">영상</a>
-          <a href="#join">참여하기</a>
-          <a href="#location">오는 길</a>
-        </div>
-        <div class="footer-social">
-          <a href="#" aria-label="인스타그램"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="유튜브"><i class="fab fa-youtube"></i></a>
-          <a href="#" aria-label="카카오톡"><i class="fas fa-comment"></i></a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-  <div style="font-size:0.95em; margin-bottom:8px;">
-    11945 경기도 구리시 검배로 136번길 32(토평동) 성광교회 / TEL.031-563-5210 / FAX.031-553-1398 / EMAIL.helpsk21church@gmail.com
-  </div>
-  <p>Copyright ⓒ 성광교회 중등부. All right reserved.</p>
-</div>
+  <!-- 하단 네비게이션 바 -->
+  <nav class="main-nav">
+    <div class="nav-items">
+      <a href="#" class="nav-item active" onclick="showSection('home-section'); return false;">
+        <i class="fas fa-home"></i>
+        <span>홈</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('letter-section'); return false;">
+        <i class="fas fa-envelope"></i>
+        <span>편지</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('ministry-section'); return false;">
+        <i class="fas fa-church"></i>
+        <span>중등부</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('location-section'); return false;">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>오는 길</span>
+      </a>
     </div>
-  </footer>
+  </nav>
 
   <script src="js/script.js" defer></script>
   <script src="js/stickers.js" defer></script>
   <script src="js/touch-swipe.js" defer></script>
-  <script src="js/scroll-slider.js" defer></script>
   <script src="js/letter-slider.js" defer></script>
   <script src="js/scroll-to-top.js" defer></script>
+  
   <!-- 카카오맵 스크립트 -->
-  <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
   <script charset="UTF-8">
     window.addEventListener('load', function() {
       setTimeout(function() {
@@ -310,6 +245,74 @@
           "mapHeight" : "400"
         }).render();
       }, 1000);
+    });
+  </script>
+  
+  <!-- 섹션 전환 스크립트 -->
+  <script>
+    // 섹션 전환 함수
+    function showSection(sectionId) {
+      // 모든 섹션 숨기기
+      const sections = document.querySelectorAll('.section-container');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // 선택한 섹션 표시
+      const targetSection = document.getElementById(sectionId);
+      targetSection.classList.add('active');
+      targetSection.classList.add('fade-in');
+      
+      // 네비게이션 아이템 활성화 상태 업데이트
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // 해당 섹션의 네비게이션 아이템 활성화
+      const activeNavItem = document.querySelector(`.nav-item[onclick*="${sectionId}"]`);
+      if (activeNavItem) {
+        activeNavItem.classList.add('active');
+      }
+      
+      // 페이지 상단으로 스크롤
+      window.scrollTo(0, 0);
+      
+      // 편지 섹션이 활성화되면 슬라이더 초기화
+      if (sectionId === 'letter-section') {
+        // 슬라이더가 이미 초기화되어 있다면 다시 초기화하지 않음
+        if (typeof initLetterSlider === 'function') {
+          setTimeout(() => {
+            initLetterSlider();
+          }, 100);
+        }
+      }
+      
+      // 위치 섹션이 활성화되면 지도 다시 로드
+      if (sectionId === 'location-section') {
+        setTimeout(() => {
+          if (typeof daum !== 'undefined' && typeof daum.roughmap !== 'undefined') {
+            new daum.roughmap.Lander({
+              "timestamp" : "1745679233203",
+              "key" : "2nu85",
+              "mapWidth" : "100%",
+              "mapHeight" : "400"
+            }).render();
+          }
+        }, 500);
+      }
+    }
+    
+    // 페이지 로드 시 초기 섹션 설정
+    document.addEventListener('DOMContentLoaded', function() {
+      // URL 해시에 따라 초기 섹션 결정
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        const sectionId = hash + '-section';
+        if (document.getElementById(sectionId)) {
+          showSection(sectionId);
+        }
+      }
     });
   </script>
 </body>

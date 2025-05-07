@@ -675,7 +675,7 @@ section {
 /* 챕터 이미지 스타일 */
 .chapter-image {
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   height: auto;
   margin: 0 auto 20px auto;
   display: block;

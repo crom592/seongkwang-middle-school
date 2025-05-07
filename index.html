@@ -103,10 +103,10 @@
         <!-- 첫화면 이미지 -->
         <img src="images/hero/첫화면.png" usemap="#image-map" alt="첫화면" class="chapter-image" style="max-width: 100%; margin-bottom: 1px;">
 
-<map name="image-map">
-  <area alt="편지읽어보기" title="편지읽어보기" href="#" coords="435,2626,1099,2488" shape="rect" onclick="showSection('letter-section'); return false;">
-  <area alt="축제 둘러보기" title="축제 둘러보기" href="#" coords="1133,2804,424,2657,1085,2598,1066,2755" shape="rect" onclick="showSection('ministry-section'); return false;">
-</map>
+        <map name="image-map" id="image-map">
+          <area alt="편지읽어보기" title="편지읽어보기" href="#" coords="435,2626,1099,2488" shape="rect" onclick="showSection('letter-section'); return false;">
+          <area alt="축제 둘러보기" title="축제 둘러보기" href="#" coords="1133,2804,424,2657,1085,2598,1066,2755" shape="rect" onclick="showSection('ministry-section'); return false;">
+        </map>
         
         <!-- 버튼 -->
         <!-- <div class="main-hero-buttons">
@@ -125,9 +125,9 @@
   <!-- 이벤트 섹션 -->
   <section class="section-container" id="event-section" style="text-align: center; padding: 20px;">
     <img src="images/그래서그날뭐해.png" usemap="#event-image-map" alt="그래서 그날 뭐해 이벤트 이미지" class="chapter-image" style="max-width: 100%;">
-    <map name="event-image-map">
-      <area target="_blank" alt="인스타그램" title="인스타그램" href="https://www.instagram.com/sungkwang_middleschool/" coords="1211,362,1323,461" data-original-coords="1211,362,1323,461" shape="rect">
-      <area target="_blank" alt="유튜브" title="유튜브" href="https://www.youtube.com/@%EA%B5%AC%EB%A6%AC%EC%84%B1%EA%B4%91%EA%B5%90%ED%9A%8C%EC%A4%91%EB%93%B1%EB%B6%80/" coords="1348,362,1462,463" data-original-coords="1348,362,1462,463" shape="rect">
+    <map name="event-image-map" id="event-image-map">
+      <area alt="인스타그램" title="인스타그램" href="https://www.instagram.com/sungkwang_middleschool/" coords="1221,371,1299,468" data-original-coords="1221,371,1299,468" shape="rect" target="_blank">
+      <area alt="유튜브" title="유튜브" href="https://www.youtube.com/@%EA%B5%AC%EB%A6%AC%EC%84%B1%EA%B4%91%EA%B5%90%ED%9A%8C%EC%A4%91%EB%93%B1%EB%B6%80/" coords="1361,385,1447,448" data-original-coords="1361,385,1447,448" shape="rect" target="_blank">
     </map>
   </section>
 
@@ -189,6 +189,9 @@
       <!-- 우리의 예배 챕터 -->
       <div class="ministry-chapter our-worship">
         <img src="images/worship/우리의예배.png" alt="우리의 예배" class="chapter-image">
+        <map id="imgmap20255802323" name="imgmap20255802323">
+          <area shape="rect" alt="친구들" title="친구들" coords="328,1481,717,1698" href="https://youtube.com/shorts/__jXmnO0raI?feature=share" target="" />
+        </map>
       </div>
       
       <!-- 우리의 성장 챕터 -->
@@ -216,7 +219,7 @@
         <div class="location-content">
           <div class="map">
             <!-- 카카오맵 지도 -->
-            <div id="daumRoughmapContainer1745679233203" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%; height:400px; margin-bottom:20px;"></div>
+            <div id="daumRoughmapContainer1745679233203" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%; height:100%; margin-bottom:20px;"></div>
           </div>
           <div class="location-info">
             <h3>성광교회</h3>
@@ -260,7 +263,6 @@
   <script src="js/script.js" defer></script>
   <script src="js/stickers.js" defer></script>
   <script src="js/touch-swipe.js" defer></script>
-  <script src="js/letter-slider.js" defer></script>
   <script src="js/scroll-to-top.js" defer></script>
   
   <!-- 카카오맵 스크립트 -->

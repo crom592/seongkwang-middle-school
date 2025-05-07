@@ -95,7 +95,12 @@
     <div class="main-hero" id="home">
       <div class="main-hero-content">
         <!-- 첫화면 이미지 -->
-        <img src="images/hero/첫화면.png" alt="첫화면" class="chapter-image" style="max-width: 100%; margin-bottom: 1px;">
+        <img src="images/hero/첫화면.png" usemap="#image-map" alt="첫화면" class="chapter-image" style="max-width: 100%; margin-bottom: 1px;">
+
+<map name="image-map">
+  <area alt="편지읽어보기" title="편지읽어보기" href="#" coords="435,2626,1099,2488" shape="rect" onclick="showSection('letter-section'); return false;">
+  <area alt="축제 둘러보기" title="축제 둘러보기" href="#" coords="1133,2804,424,2657,1085,2598,1066,2755" shape="rect" onclick="showSection('ministry-section'); return false;">
+</map>
         
         <!-- 버튼 -->
         <!-- <div class="main-hero-buttons">
@@ -314,6 +319,53 @@
         }
       }
     });
+    // 반응형 이미지맵 자동 변환
+    function resizeImageMap() {
+      document.querySelectorAll('img[usemap]').forEach(function(img) {
+        if (!img.complete) return;
+        const mapName = img.getAttribute('usemap').replace('#', '');
+        const map = document.querySelector('map[name="' + mapName + '"]');
+        if (!map) return;
+        const originalWidth = img.naturalWidth;
+        const originalHeight = img.naturalHeight;
+        const currentWidth = img.clientWidth;
+        const currentHeight = img.clientHeight;
+        const widthRatio = currentWidth / originalWidth;
+        const heightRatio = currentHeight / originalHeight;
+        map.querySelectorAll('area').forEach(function(area) {
+          const originalCoords = area.dataset.originalCoords || area.getAttribute('coords');
+          if (!area.dataset.originalCoords) {
+            area.dataset.originalCoords = originalCoords;
+          }
+          const coords = originalCoords.split(',').map(Number);
+          const shape = area.getAttribute('shape').toLowerCase();
+          let newCoords;
+          if (shape === 'rect') {
+            newCoords = [
+              Math.round(coords[0] * widthRatio),
+              Math.round(coords[1] * heightRatio),
+              Math.round(coords[2] * widthRatio),
+              Math.round(coords[3] * heightRatio)
+            ];
+          } else if (shape === 'circle') {
+            newCoords = [
+              Math.round(coords[0] * widthRatio),
+              Math.round(coords[1] * heightRatio),
+              Math.round(coords[2] * widthRatio)
+            ];
+          } else if (shape === 'poly') {
+            newCoords = coords.map((val, idx) =>
+              idx % 2 === 0
+                ? Math.round(val * widthRatio)
+                : Math.round(val * heightRatio)
+            );
+          }
+          area.setAttribute('coords', newCoords.join(','));
+        });
+      });
+    }
+    window.addEventListener('load', resizeImageMap);
+    window.addEventListener('resize', resizeImageMap);
   </script>
 </body>
 </html>

@@ -188,7 +188,7 @@
     <div class="ministry-info" style="margin: 0; padding: 0; width: 100%; max-width: 100%;">
       <!-- 우리의 예배 챕터 -->
       <div class="ministry-chapter our-worship">
-        <img src="images/worship/우리의예배.png" alt="우리의 예배" class="chapter-image">
+        <img src="images/worship/우리의예배.png" alt="우리의 예배" class="chapter-image" usemap="#imgmap20255802323"> 
         <map id="imgmap20255802323" name="imgmap20255802323">
           <area shape="rect" alt="친구들" title="친구들" coords="328,1481,717,1698" href="https://youtube.com/shorts/__jXmnO0raI?feature=share" target="" />
         </map>
@@ -283,56 +283,58 @@
   <script>
     // 섹션 전환 함수
     function showSection(sectionId) {
-      // 모든 섹션 숨기기
+      // All your existing code to hide current sections and update nav items...
       const sections = document.querySelectorAll('.section-container');
       sections.forEach(section => {
-        section.classList.remove('active');
+          section.classList.remove('active');
       });
-      
-      // 선택한 섹션 표시
+  
       const targetSection = document.getElementById(sectionId);
-      targetSection.classList.add('active');
-      targetSection.classList.add('fade-in');
-      
-      // 네비게이션 아이템 활성화 상태 업데이트
-      const navItems = document.querySelectorAll('.nav-item');
-      navItems.forEach(item => {
-        item.classList.remove('active');
-      });
-      
-      // 해당 섹션의 네비게이션 아이템 활성화
-      const activeNavItem = document.querySelector(`.nav-item[onclick*="${sectionId}"]`);
-      if (activeNavItem) {
-        activeNavItem.classList.add('active');
-      }
-      
-      // 페이지 상단으로 스크롤
-      window.scrollTo(0, 0);
-      
-      // 편지 섹션이 활성화되면 슬라이더 초기화
-      if (sectionId === 'letter-section') {
-        // 슬라이더가 이미 초기화되어 있다면 다시 초기화하지 않음
-        if (typeof initLetterSlider === 'function') {
-          setTimeout(() => {
-            initLetterSlider();
-          }, 100);
-        }
-      }
-      
-      // 위치 섹션이 활성화되면 지도 다시 로드
-      if (sectionId === 'location-section') {
-        setTimeout(() => {
-          if (typeof daum !== 'undefined' && typeof daum.roughmap !== 'undefined') {
-            new daum.roughmap.Lander({
-              "timestamp" : "1745679233203",
-              "key" : "2nu85",
-              "mapWidth" : "100%",
-              "mapHeight" : "400"
-            }).render();
+      if (targetSection) { // Check if targetSection exists
+          targetSection.classList.add('active');
+          targetSection.classList.add('fade-in'); // Your animation class
+  
+          // Update navigation item active state (your existing logic)
+          const navItems = document.querySelectorAll('.nav-item');
+          navItems.forEach(item => {
+              item.classList.remove('active');
+          });
+          const activeNavItem = document.querySelector(`.nav-item[onclick*="${sectionId}"]`);
+          if (activeNavItem) {
+              activeNavItem.classList.add('active');
           }
-        }, 100);
+  
+          window.scrollTo(0, 0); // Scroll to top
+  
+          // CRITICAL: Call map resizing functions after a short delay
+          // This allows the DOM to update and images to have dimensions
+          setTimeout(() => {
+              resizeImageMap(); // Update all generic image maps
+  
+              if (sectionId === 'event-section') {
+                  updateEventImageMapCoordinates(); // Specifically update the event map
+              }
+              // Your existing logic for letter-slider and location-section map re-render
+              if (sectionId === 'letter-section') {
+                  if (typeof initLetterSlider === 'function') {
+                      // setTimeout(() => { initLetterSlider(); }, 100); // Your original delay
+                      initLetterSlider(); // May not need separate timeout if already in one
+                  }
+              }
+              if (sectionId === 'location-section') {
+                  // setTimeout(() => { /* your daum map render logic */ }, 100); // Your original delay
+                  if (typeof daum !== 'undefined' && typeof daum.roughmap !== 'undefined') {
+                      new daum.roughmap.Lander({
+                          "timestamp" : "1745679233203", // Use your actual timestamp
+                          "key" : "2nu85",           // Use your actual key
+                          "mapWidth" : "100%",
+                          "mapHeight" : "100%"       // Or your desired height
+                      }).render();
+                  }
+              }
+          }, 100); // 100ms delay, adjust if needed
       }
-    }
+  }
     
     // 페이지 로드 시 초기 섹션 설정
     document.addEventListener('DOMContentLoaded', function() {
@@ -345,51 +347,125 @@
         }
       }
     });
-    // 반응형 이미지맵 자동 변환
-    function resizeImageMap() {
-      document.querySelectorAll('img[usemap]').forEach(function(img) {
-        if (!img.complete) return;
-        const mapName = img.getAttribute('usemap').replace('#', '');
-        const map = document.querySelector('map[name="' + mapName + '"]');
-        if (!map) return;
-        const originalWidth = img.naturalWidth;
-        const originalHeight = img.naturalHeight;
-        const currentWidth = img.clientWidth;
-        const currentHeight = img.clientHeight;
-        const widthRatio = currentWidth / originalWidth;
-        const heightRatio = currentHeight / originalHeight;
-        map.querySelectorAll('area').forEach(function(area) {
-          const originalCoords = area.dataset.originalCoords || area.getAttribute('coords');
+    // Place this function in the global scope or ensure it's accessible
+    function updateEventImageMapCoordinates() {
+      const imageMap = document.querySelector('map[name="event-image-map"]');
+      if (!imageMap) return;
+
+      const imageForMap = document.querySelector('img[usemap="#event-image-map"]');
+      // Check if imageForMap exists and is loaded
+      if (!imageForMap || !imageForMap.complete || imageForMap.naturalWidth === 0) {
+          if(imageForMap) {
+              // If not loaded, try again once it loads
+              imageForMap.onload = updateEventImageMapCoordinates;
+          }
+          return;
+      }
+
+      const areas = imageMap.querySelectorAll('area');
+      const originalImageWidth = 1608; // As per your specific script for this map
+
+      const currentImageWidth = imageForMap.clientWidth;
+      if (currentImageWidth === 0) return; // Image is not visible or has no width
+
+      const scaleRatio = currentImageWidth / originalImageWidth;
+
+      areas.forEach(area => {
           if (!area.dataset.originalCoords) {
-            area.dataset.originalCoords = originalCoords;
+              // Ensure originalCoords are stored if not already
+              area.dataset.originalCoords = area.coords;
           }
-          const coords = originalCoords.split(',').map(Number);
-          const shape = area.getAttribute('shape').toLowerCase();
-          let newCoords;
-          if (shape === 'rect') {
-            newCoords = [
-              Math.round(coords[0] * widthRatio),
-              Math.round(coords[1] * heightRatio),
-              Math.round(coords[2] * widthRatio),
-              Math.round(coords[3] * heightRatio)
-            ];
-          } else if (shape === 'circle') {
-            newCoords = [
-              Math.round(coords[0] * widthRatio),
-              Math.round(coords[1] * heightRatio),
-              Math.round(coords[2] * widthRatio)
-            ];
-          } else if (shape === 'poly') {
-            newCoords = coords.map((val, idx) =>
-              idx % 2 === 0
-                ? Math.round(val * widthRatio)
-                : Math.round(val * heightRatio)
-            );
-          }
-          area.setAttribute('coords', newCoords.join(','));
-        });
+          const originalCoordsArray = area.dataset.originalCoords.split(',').map(Number);
+          // Ensure it's a rect, as per original code context (4 coords)
+          if (originalCoordsArray.length !== 4) return; 
+
+          const newCoordsArray = originalCoordsArray.map(coord => Math.round(coord * scaleRatio));
+          area.coords = newCoordsArray.join(',');
       });
     }
+
+    // Your existing DOMContentLoaded for event-image-map can now use this global function
+    document.addEventListener('DOMContentLoaded', function() {
+      const imageForMap = document.querySelector('img[usemap="#event-image-map"]');
+      if (imageForMap) {
+          if (imageForMap.complete && imageForMap.naturalWidth !== 0) {
+              updateEventImageMapCoordinates();
+          } else {
+              imageForMap.addEventListener('load', updateEventImageMapCoordinates);
+          }
+      }
+      // Keep the resize listener
+      window.addEventListener('resize', updateEventImageMapCoordinates);
+    });
+
+    // Your existing generic resizeImageMap function (ensure it handles unloaded images gracefully)
+    function resizeImageMap() {
+      document.querySelectorAll('img[usemap]').forEach(function(img) {
+          const mapName = img.getAttribute('usemap').replace('#', '');
+          // Skip event-image-map if it's handled by its dedicated function
+          if (mapName === 'event-image-map') {
+              return; 
+          }
+
+          const processThisImg = (currentImg) => {
+              const currentMapName = currentImg.getAttribute('usemap').replace('#', '');
+              const map = document.querySelector('map[name="' + currentMapName + '"]');
+              if (!map) return;
+
+              // Ensure image is loaded and visible
+              if (currentImg.naturalWidth === 0 || currentImg.clientWidth === 0) {
+                  return;
+              }
+
+              const originalWidth = currentImg.naturalWidth;
+              const originalHeight = currentImg.naturalHeight;
+              const currentWidth = currentImg.clientWidth;
+              const currentHeight = currentImg.clientHeight;
+              const widthRatio = currentWidth / originalWidth;
+              const heightRatio = currentHeight / originalHeight;
+
+              map.querySelectorAll('area').forEach(function(area) {
+                  const originalCoords = area.dataset.originalCoords || area.getAttribute('coords');
+                  if (!area.dataset.originalCoords) {
+                      area.dataset.originalCoords = originalCoords;
+                  }
+                  const coords = originalCoords.split(',').map(Number);
+                  let newCoords = [];
+                  const shape = area.getAttribute('shape').toLowerCase();
+                  
+                  if (shape === 'rect') {
+                      newCoords = [
+                          Math.round(coords[0] * widthRatio),
+                          Math.round(coords[1] * heightRatio),
+                          Math.round(coords[2] * widthRatio),
+                          Math.round(coords[3] * heightRatio)
+                      ];
+                  } else if (shape === 'circle') {
+                      newCoords = [
+                          Math.round(coords[0] * widthRatio),
+                          Math.round(coords[1] * heightRatio),
+                          Math.round(coords[2] * widthRatio) // Assuming radius scales primarily with width
+                      ];
+                  } else if (shape === 'poly') {
+                      newCoords = coords.map((val, idx) =>
+                          idx % 2 === 0 ? Math.round(val * widthRatio) : Math.round(val * heightRatio)
+                      );
+                  }
+
+                  if (newCoords.length > 0) {
+                      area.setAttribute('coords', newCoords.join(','));
+                  }
+              });
+          };
+
+          if (!img.complete || img.naturalWidth === 0) {
+              img.onload = () => processThisImg(img);
+          } else {
+              processThisImg(img);
+          }
+      });
+    }
+    // Keep these original listeners
     window.addEventListener('load', resizeImageMap);
     window.addEventListener('resize', resizeImageMap);
 

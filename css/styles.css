@@ -1064,6 +1064,12 @@ footer {
   transform: translateY(0);
 }
 
+/* 홈 섹션 하단 패딩 추가 (탭 바 가림 방지) */
+#home-section {
+  padding-bottom: 80px;
+  box-sizing: border-box;
+}
+
 /* 모바일 레이아웃 */
 .hero h1 {
   font-size: 2rem;

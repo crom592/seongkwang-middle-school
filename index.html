@@ -19,7 +19,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* 모바일 우선 스타일 - 반응형 없이 모바일 레이아웃만 사용 */
@@ -123,13 +122,13 @@
   </section>
 
   <!-- 이벤트 섹션 -->
-  <section class="section-container" id="event-section" style="text-align: center; padding: 20px;">
+  <!-- <section class="section-container" id="event-section" style="text-align: center; padding: 20px;">
     <img src="images/그래서그날뭐해.png" usemap="#event-image-map" alt="그래서 그날 뭐해 이벤트 이미지" class="chapter-image" style="max-width: 100%;">
     <map name="event-image-map" id="event-image-map">
-      <area alt="인스타그램" title="인스타그램" href="https://www.instagram.com/sungkwang_middleschool/" coords="1221,371,1299,468" data-original-coords="1221,371,1299,468" shape="rect" target="_blank">
-      <area alt="유튜브" title="유튜브" href="https://www.youtube.com/@%EA%B5%AC%EB%A6%AC%EC%84%B1%EA%B4%91%EA%B5%90%ED%9A%8C%EC%A4%91%EB%93%B1%EB%B6%80/" coords="1361,385,1447,448" data-original-coords="1361,385,1447,448" shape="rect" target="_blank">
+      <area alt="인스타그램" title="인스타그램" href="https://www.instagram.com/sungkwang_middleschool" coords="1221,371,1299,468" data-original-coords="1221,371,1299,468" shape="rect" target="">
+      <area alt="유튜브" title="유튜브" href="https://www.youtube.com/@성광교회중등부" coords="1361,385,1447,448" data-original-coords="1361,385,1447,448" shape="rect" target="">
     </map>
-  </section>
+  </section> -->
 
   <!-- 편지 섹션 -->
   <section class="section-container" id="letter-section">
@@ -207,6 +206,10 @@
       <!-- 그래서 그 날 뭐해? 챕터 -->
       <div class="ministry-chapter what-we-do">
         <img src="images/그래서그날뭐해.png" alt="그래서 그날 뭐해?" class="chapter-image">
+        <map name="event-image-map" id="event-image-map">
+          <area alt="인스타그램" title="인스타그램" href="https://www.instagram.com/sungkwang_middleschool" coords="1210,366,1323,462" shape="rect" target="">
+          <area alt="유튜브" title="유튜브" href="https://www.youtube.com/@성광교회중등부" coords="1346,366,1456,454" shape="rect" target="">
+        </map>
       </div>
     </div>
   </section>
@@ -264,6 +267,8 @@
   <script src="js/stickers.js" defer></script>
   <script src="js/touch-swipe.js" defer></script>
   <script src="js/scroll-to-top.js" defer></script>
+  <!-- 2. 설치 스크립트: 지도 퍼가기 서비스가 2개 이상일 때, 이 스크립트는 한 번만 넣으면 됩니다. -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
   
   <!-- 카카오맵 스크립트 -->
   <script charset="UTF-8">

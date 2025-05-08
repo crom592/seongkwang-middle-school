@@ -201,7 +201,7 @@
       <!-- 우리가 말하는 성광 중등부 챕터 -->
       <div class="ministry-chapter testimonials">
         <img src="images/우리가 말하는 성광 중등부.png" alt="우리가 말하는 성광 중등부" class="chapter-image">
-        <video id="testimonialVideo" class="chapter-video" autoplay playsinline loop controls style="width: 100%; margin-top: 10px;">
+        <video id="testimonialVideo" class="chapter-video" playsinline loop controls style="width: 100%; margin-top: 10px;">
           <source src="img/0508.mp4" type="video/mp4">
           브라우저가 비디오 태그를 지원하지 않습니다.
         </video>
@@ -289,51 +289,67 @@
   <script src="js/touch-swipe.js" defer></script>
   <script src="js/scroll-to-top.js" defer></script>
   
-  <!-- 비디오 자동 재생 스크립트 -->
+  <!-- 비디오 스크롤 감지 및 자동 재생 스크립트 -->
   <script>
-    // 비디오 자동 재생 및 사운드 활성화
+    // 비디오 스크롤 감지 및 자동 재생
     document.addEventListener('DOMContentLoaded', function() {
-      // 사용자 상호작용을 감지하여 비디오 사운드 활성화
-      function enableVideoSound() {
-        const video = document.getElementById('testimonialVideo');
-        if (video) {
-          video.muted = false;
-          video.play();
-          
-          // 사운드 활성화 후 이벤트 리스너 제거
-          document.removeEventListener('click', enableVideoSound);
-          document.removeEventListener('touchstart', enableVideoSound);
-          document.removeEventListener('keydown', enableVideoSound);
-        }
-      }
+      const video = document.getElementById('testimonialVideo');
       
-      // 사용자 상호작용 이벤트 리스너 추가
-      document.addEventListener('click', enableVideoSound);
-      document.addEventListener('touchstart', enableVideoSound);
-      document.addEventListener('keydown', enableVideoSound);
-      
-      // ministry-section이 표시될 때 비디오 사운드 활성화 시도
-      function checkAndEnableVideoSound() {
-        const ministrySection = document.getElementById('ministry-section');
-        if (ministrySection && ministrySection.classList.contains('active')) {
-          setTimeout(enableVideoSound, 500);
-        }
-      }
-      
-      // 초기 한 번 확인
-      checkAndEnableVideoSound();
-      // 섹션 전환 후에도 확인
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.attributeName === 'class') {
-            checkAndEnableVideoSound();
-          }
+      if (video) {
+        // Intersection Observer 생성
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            // 비디오가 화면에 보이면 재생 시작
+            if (entry.isIntersecting) {
+              // 재생 시도 (브라우저 정책으로 인해 실패할 수 있음)
+              video.play().catch(e => console.log('Video play failed:', e));
+              
+              // 사용자 상호작용 후 사운드 활성화 기능 추가
+              const enableSound = () => {
+                video.muted = false;
+                // 이벤트 리스너 제거
+                document.removeEventListener('click', enableSound);
+                document.removeEventListener('touchstart', enableSound);
+                document.removeEventListener('keydown', enableSound);
+              };
+              
+              // 사용자 상호작용 이벤트 리스너 추가
+              document.addEventListener('click', enableSound);
+              document.addEventListener('touchstart', enableSound);
+              document.addEventListener('keydown', enableSound);
+            } else {
+              // 화면에서 비디오가 보이지 않으면 일시정지
+              video.pause();
+            }
+          });
+        }, {
+          // 옵션: 비디오의 40%가 화면에 보일 때 트리거
+          threshold: 0.4
         });
-      });
-      
-      const ministrySection = document.getElementById('ministry-section');
-      if (ministrySection) {
-        observer.observe(ministrySection, { attributes: true });
+        
+        // 비디오 요소 감시 시작
+        videoObserver.observe(video);
+        
+        // 섹션 전환 감지
+        const ministrySection = document.getElementById('ministry-section');
+        if (ministrySection) {
+          const sectionObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+              if (mutation.attributeName === 'class' && ministrySection.classList.contains('active')) {
+                // 섹션이 활성화되면 비디오가 화면에 보이는지 다시 확인
+                setTimeout(() => {
+                  const rect = video.getBoundingClientRect();
+                  const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                  if (isVisible) {
+                    video.play().catch(e => console.log('Video play failed on section change:', e));
+                  }
+                }, 300);
+              }
+            });
+          });
+          
+          sectionObserver.observe(ministrySection, { attributes: true });
+        }
       }
     });
   </script>
@@ -386,12 +402,8 @@
           }
           
           if (sectionId === 'ministry-section') {
-            // 중등부 섹션으로 이동할 때 비디오 사운드 활성화
-            const video = document.getElementById('testimonialVideo');
-            if (video) {
-              video.muted = false;
-              video.play().catch(e => console.log('Auto-play with sound failed:', e));
-            }
+            // 중등부 섹션으로 이동할 때 비디오는 스크롤 감지로 재생되도록 설정되어 있음
+            // 추가 작업이 필요하면 여기에 추가
           }
           
           if (sectionId === 'location-section') {

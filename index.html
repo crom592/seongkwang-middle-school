@@ -201,6 +201,10 @@
       <!-- 우리가 말하는 성광 중등부 챕터 -->
       <div class="ministry-chapter testimonials">
         <img src="images/우리가 말하는 성광 중등부.png" alt="우리가 말하는 성광 중등부" class="chapter-image">
+        <video id="testimonialVideo" class="chapter-video" autoplay playsinline loop controls style="width: 100%; margin-top: 10px;">
+          <source src="img/0508.mp4" type="video/mp4">
+          브라우저가 비디오 태그를 지원하지 않습니다.
+        </video>
       </div>
       
       <!-- 그래서 그 날 뭐해? 챕터 -->
@@ -285,70 +289,129 @@
   <script src="js/touch-swipe.js" defer></script>
   <script src="js/scroll-to-top.js" defer></script>
   
+  <!-- 비디오 자동 재생 스크립트 -->
+  <script>
+    // 비디오 자동 재생 및 사운드 활성화
+    document.addEventListener('DOMContentLoaded', function() {
+      // 사용자 상호작용을 감지하여 비디오 사운드 활성화
+      function enableVideoSound() {
+        const video = document.getElementById('testimonialVideo');
+        if (video) {
+          video.muted = false;
+          video.play();
+          
+          // 사운드 활성화 후 이벤트 리스너 제거
+          document.removeEventListener('click', enableVideoSound);
+          document.removeEventListener('touchstart', enableVideoSound);
+          document.removeEventListener('keydown', enableVideoSound);
+        }
+      }
+      
+      // 사용자 상호작용 이벤트 리스너 추가
+      document.addEventListener('click', enableVideoSound);
+      document.addEventListener('touchstart', enableVideoSound);
+      document.addEventListener('keydown', enableVideoSound);
+      
+      // ministry-section이 표시될 때 비디오 사운드 활성화 시도
+      function checkAndEnableVideoSound() {
+        const ministrySection = document.getElementById('ministry-section');
+        if (ministrySection && ministrySection.classList.contains('active')) {
+          setTimeout(enableVideoSound, 500);
+        }
+      }
+      
+      // 초기 한 번 확인
+      checkAndEnableVideoSound();
+      // 섹션 전환 후에도 확인
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.attributeName === 'class') {
+            checkAndEnableVideoSound();
+          }
+        });
+      });
+      
+      const ministrySection = document.getElementById('ministry-section');
+      if (ministrySection) {
+        observer.observe(ministrySection, { attributes: true });
+      }
+    });
+  </script>
+  
   <!-- 섹션 전환 스크립트 -->
   <script>
     // 섹션 전환 함수
     function showSection(sectionId) {
-      // All your existing code to hide current sections and update nav items...
+      // 모든 섹션 숨기기
       const sections = document.querySelectorAll('.section-container');
       sections.forEach(section => {
-          section.classList.remove('active');
+        section.classList.remove('active');
       });
-  
+      
+      // 선택한 섹션 표시
       const targetSection = document.getElementById(sectionId);
-      if (targetSection) { // Check if targetSection exists
-          targetSection.classList.add('active');
-          targetSection.classList.add('fade-in'); // Your animation class
-  
-          // Update navigation item active state (your existing logic)
-          const navItems = document.querySelectorAll('.nav-item');
-          navItems.forEach(item => {
-              item.classList.remove('active');
-          });
-          const activeNavItem = document.querySelector(`.nav-item[onclick*="${sectionId}"]`);
-          if (activeNavItem) {
-              activeNavItem.classList.add('active');
+      if (targetSection) {
+        targetSection.classList.add('active');
+        targetSection.classList.add('fade-in');
+        
+        // 네비게이션 아이템 활성화 상태 업데이트
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+          item.classList.remove('active');
+        });
+        const activeNavItem = document.querySelector(`.nav-item[onclick*="${sectionId}"]`);
+        if (activeNavItem) {
+          activeNavItem.classList.add('active');
+        }
+        
+        window.scrollTo(0, 0); // 페이지 상단으로 스크롤
+        
+        // 섹션에 따른 추가 로직 실행
+        setTimeout(() => {
+          // 이미지맵 좌표 업데이트
+          resizeImageMap();
+          
+          // 특정 섹션에 따른 추가 로직
+          if (sectionId === 'event-section') {
+            updateEventImageMapCoordinates();
           }
-  
-          window.scrollTo(0, 0); // Scroll to top
-  
-          // CRITICAL: Call map resizing functions after a short delay
-          // This allows the DOM to update and images to have dimensions
-          setTimeout(() => {
-              resizeImageMap(); // Update all generic image maps
-  
-              if (sectionId === 'event-section') {
-                  updateEventImageMapCoordinates(); // Specifically update the event map
+          
+          if (sectionId === 'letter-section') {
+            if (typeof initLetterSlider === 'function') {
+              initLetterSlider();
+            }
+            if (typeof updateLetterSliderButtons === 'function') {
+              setTimeout(updateLetterSliderButtons, 100);
+            }
+          }
+          
+          if (sectionId === 'ministry-section') {
+            // 중등부 섹션으로 이동할 때 비디오 사운드 활성화
+            const video = document.getElementById('testimonialVideo');
+            if (video) {
+              video.muted = false;
+              video.play().catch(e => console.log('Auto-play with sound failed:', e));
+            }
+          }
+          
+          if (sectionId === 'location-section') {
+            // 지도 렌더링
+            if (typeof daum !== 'undefined' && typeof daum.roughmap !== 'undefined') {
+              const mapContainer = document.getElementById('daumRoughmapContainer1746694839262');
+              if (mapContainer && !mapContainer.classList.contains('map-rendered')) {
+                new daum.roughmap.Lander({
+                  "timestamp" : "1746694839262",
+                  "key" : "2nxmi",
+                  "mapWidth" : "100%",
+                  "mapHeight" : "360px"
+                }).render();
+                mapContainer.classList.add('map-rendered');
               }
-              // Your existing logic for letter-slider and location-section map re-render
-              if (sectionId === 'letter-section') {
-                  if (typeof initLetterSlider === 'function') {
-                      initLetterSlider();
-                  }
-                  // 편지 섹션이 표시될 때 슬라이더 버튼 가시성 업데이트
-                  if (typeof updateLetterSliderButtons === 'function') {
-                      setTimeout(updateLetterSliderButtons, 100);
-                  }
-              }
-              if (sectionId === 'location-section') {
-                  // 지도가 이미 로드된 경우 다시 렌더링하지 않음
-                  // 필요한 경우 지도 크기 조정만 수행
-                  if (typeof daum !== 'undefined' && typeof daum.roughmap !== 'undefined') {
-                      const mapContainer = document.getElementById('daumRoughmapContainer1745679233203');
-                      if (mapContainer && !mapContainer.classList.contains('map-rendered')) {
-                          new daum.roughmap.Lander({
-                              "timestamp" : "1745679233203",
-                              "key" : "2nu85",
-                              "mapWidth" : "100%",
-                              "mapHeight" : "400px"
-                          }).render();
-                          mapContainer.classList.add('map-rendered');
-                      }
-                  }
-              }
-          }, 100); // 100ms delay, adjust if needed
+            }
+          }
+        }, 100);
       }
-  }
+    }
     
     // 페이지 로드 시 초기 섹션 설정
     document.addEventListener('DOMContentLoaded', function() {

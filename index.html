@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script> 
   <style>
     /* 모바일 우선 스타일 - 반응형 없이 모바일 레이아웃만 사용 */
     .max-w-md { max-width: 28rem; }
@@ -222,7 +222,9 @@
         <div class="location-content">
           <div class="map">
             <!-- 카카오맵 지도 -->
-            <div id="daumRoughmapContainer1745679233203" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%; height:100%; margin-bottom:20px;"></div>
+           <!-- * 카카오맵 - 지도퍼가기 -->
+          <!-- 1. 지도 노드 -->
+          <div id="daumRoughmapContainer1746694839262" class="root_daum_roughmap root_daum_roughmap_landing"></div>
           </div>
           <div class="location-info">
             <h3>성광교회</h3>
@@ -264,25 +266,24 @@
   </nav>
 
   <script src="js/script.js" defer></script>
+   <!--
+	2. 설치 스크립트
+	* 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+  -->
+  <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+  <!-- 3. 실행 스크립트 -->
+  <script charset="UTF-8">
+    new daum.roughmap.Lander({
+      "timestamp" : "1746694839262",
+      "key" : "2nxmi",
+      "mapWidth" : "640",
+      "mapHeight" : "360"
+    }).render();
+  </script>
   <script src="js/stickers.js" defer></script>
   <script src="js/touch-swipe.js" defer></script>
   <script src="js/scroll-to-top.js" defer></script>
-  <!-- 2. 설치 스크립트: 지도 퍼가기 서비스가 2개 이상일 때, 이 스크립트는 한 번만 넣으면 됩니다. -->
-<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-  
-  <!-- 카카오맵 스크립트 -->
-  <script charset="UTF-8">
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        new daum.roughmap.Lander({
-          "timestamp" : "1745679233203",
-          "key" : "2nu85",
-          "mapWidth" : "100%",
-          "mapHeight" : "400"
-        }).render();
-      }, 1000);
-    });
-  </script>
   
   <!-- 섹션 전환 스크립트 -->
   <script>
@@ -327,14 +328,19 @@
                   }
               }
               if (sectionId === 'location-section') {
-                  // setTimeout(() => { /* your daum map render logic */ }, 100); // Your original delay
+                  // 지도가 이미 로드된 경우 다시 렌더링하지 않음
+                  // 필요한 경우 지도 크기 조정만 수행
                   if (typeof daum !== 'undefined' && typeof daum.roughmap !== 'undefined') {
-                      new daum.roughmap.Lander({
-                          "timestamp" : "1745679233203", // Use your actual timestamp
-                          "key" : "2nu85",           // Use your actual key
-                          "mapWidth" : "100%",
-                          "mapHeight" : "100%"       // Or your desired height
-                      }).render();
+                      const mapContainer = document.getElementById('daumRoughmapContainer1745679233203');
+                      if (mapContainer && !mapContainer.classList.contains('map-rendered')) {
+                          new daum.roughmap.Lander({
+                              "timestamp" : "1745679233203",
+                              "key" : "2nu85",
+                              "mapWidth" : "100%",
+                              "mapHeight" : "400px"
+                          }).render();
+                          mapContainer.classList.add('map-rendered');
+                      }
                   }
               }
           }, 100); // 100ms delay, adjust if needed
